@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
-	return "Arabia.io clone";
-});
+Route::get('/', array(
+    'as'=>'communities-browse-newest',
+    'uses'=>'CommunityController@getBrowseNewest'
+));

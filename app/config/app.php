@@ -108,6 +108,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 		'Baum\BaumServiceProvider',
+                'ArabiaIOClone\Providers\RepositoryServiceProvider',
 
 	),
 
