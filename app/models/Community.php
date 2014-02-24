@@ -11,7 +11,13 @@ class Community extends Eloquent
     
     public $presenter = 'Presenters\CommunityPresenter';
     
-    protected $fillable = array('name', 'slug','description');
+    protected $fillable = array('name', 'slug','description','creator_id');
+    
+    
+    public function creator()
+    {
+        return $this->belongsTo('User','creator_id');
+    }
 }
 
 ?>

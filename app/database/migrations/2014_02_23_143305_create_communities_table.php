@@ -20,6 +20,7 @@ class CreateCommunitiesTable extends Migration {
                 $table->string('slug')->unique();
 	        $table->string('name')->unique();
                 $table->text('description')->nullable()->default(NULL);
+                $table->integer('creator_id')->unsigned();
 	        $table->timestamps();
 	    });
 	}

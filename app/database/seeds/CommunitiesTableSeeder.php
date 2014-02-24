@@ -9,29 +9,38 @@
  *
  * @author Hichem MHAMED
  */
-class CommunitiesTableSeeder extends Seeder
-{
-    public function run()
+class CommunitiesTableSeeder extends Seeder {
+
+    public function run() 
     {
+        $creatorUser = User::find(1);
+        
         $communitiesArray = array(
             array(
                 'name' => 'تطوير الويب',
-                'slug'=> "webdev",
-                'description' => 'webdev desc'
+                'slug' => "webdev",
+                'description' => 'مجتمع خاص بمناقشة وطرح المواضيع والقضايا العامة المتعلقة بتطوير الويب ولغاتها المختلفة',
+                'creator_id'=>$creatorUser->id
+                
             ),
             array(
                 'name' => 'برمجة عامة',
-                'slug'=> "programming",
-                'description' => 'programming desc'
+                'slug' => "programming",
+                'description' => 'بإمكانك طرح المواضيع والنقاشات المتعلقة بالبرمجة بشكل عام او لغات البرمجة التي لايوجد لها مجتمعات فرعية.',
+                'creator_id'=>$creatorUser->id
+            ),
+            array(
+                'name' => 'التصميم وقابلية الاستخدام',
+                'slug' => "design",
+                'description' => 'بإمكانك طرح المواضيع والنقاشات المتعلقة بالبرمجة بشكل عام او لغات البرمجة التي لايوجد لها مجتمعات فرعية.',
+                'creator_id'=>$creatorUser->id
             )
-            
-                    );
-        foreach($communitiesArray as $entry)
-        {
+        );
+        foreach ($communitiesArray as $entry) {
             Community::create($entry);
         }
-        
     }
+
 }
 
 ?>
