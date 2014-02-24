@@ -1,0 +1,1 @@
+<!--<div id="dropdown-add" class="dropdown dropdown-tip"><ul class="dropdown-menu"><li><a href="/add/link"><i class="icon-link"></i> أضف رابطاً</a></li><li><a href="/add/post"><i class="icon-file-text-alt"></i> أضف موضوعاً</a></li></ul></div>-->

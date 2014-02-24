@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', array(
-    'as'=>'communities-browse-newest',
-    'uses'=>'CommunityController@getBrowseNewest'
-));
+Route::get('/', function()
+{
+    return View::make('layouts.main');
+});
