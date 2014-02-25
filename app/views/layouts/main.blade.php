@@ -8,24 +8,26 @@
 <meta name="viewport" content="width=device-width"><meta http-equiv="X-UA-Compatible" content="IE=edge" />
 @yield('meta')
 {{ HTML::style('/css/style.css'); }}
-{{ HTML::style('/css/font-awesome.min.css'); }}
+{{ HTML::style('/css/font-awesome.css'); }}
+<!--<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">-->
+
 @yield('styles')
 <!--[if IE 7]>  <link rel="stylesheet" href="/css/font-awesome-ie7.min.css"><![endif]-->
-<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="/js/jquery-ui-1.8.22.min.js">
-</script><script type="text/javascript" src="/js/jquery.tag-it.js">
-</script><script type="text/javascript" src="/js/select2.jquery.min.js">
-</script><script type="text/javascript" src="/js/jquery.dropdown.js"></script>
-<script type="text/javascript" src="/js/jquery.nailthumb.1.1.min.js"></script>
-<script type="text/javascript" src="/js/application.js"></script>
+<script type="text/javascript" src="{{asset('js/jquery-1.8.3.min.js')}}"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.8.22.min.js')}}">
+</script><script type="text/javascript" src="{{asset('js/jquery.tag-it.js')}}">
+</script><script type="text/javascript" src="{{asset('js/select2.jquery.min.js')}}">
+</script><script type="text/javascript" src="{{asset('js/jquery.dropdown.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/jquery.nailthumb.1.1.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/application.js')}}"></script>
 <!--[if lt IE 10 ]><script type="text/javascript" src="/js/application.ie.js?070113"></script><![endif]--> 
-<script type="text/javascript" src="/js/fileuploader.js"></script>
+<script type="text/javascript" src="{{asset('js/fileuploader.js')}}"></script>
 <link rel="alternate" type="application/rss+xml" title="Arabia I/O - الأكثر شعبية" href="https://arabia.io/rss.xml" />
 <link rel="alternate" type="application/rss+xml" title="Arabia I/O - أحدث المساهمات" href="https://arabia.io/new/rss.xml" />
-<meta property="og:title" content="Arabia I&#x2F;O" />
+<!--<meta property="og:title" content="Arabia I&#x2F;O" />
 <meta property="og:description" content="يمكنك هنا طرح ومناقشة الأفكار والقضايا التقنية والعلمية والمشاركة في العديد من المجتمعات المختلفة." />
 <meta property="og:image" content="https://arabia.io/images/arabiaio-icon.png" />
-<meta property="og:image" content="https://arabia.io/images/arabiaio-large.png" />
+<meta property="og:image" content="https://arabia.io/images/arabiaio-large.png" />-->
 <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
 @yield('scripts')
 </head>

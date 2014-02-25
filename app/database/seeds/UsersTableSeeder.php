@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
                 'fullname'=>'هشام محمد',
 	        'username'=>'hichem',
                 'website'=>'http://www.arabia.io',
-	        'password' =>'password',
+	        'password' => Hash::make('password'),
                 'bio' =>'good guy',
                 'active' => 1
            ),
@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
                 'fullname'=>'أم كلثوم',
 	        'username'=>'kolthoum',
                 'website'=>'',
-	        'password' =>'password',
+	        'password' =>Hash::make('password'),
                 'bio' =>'good singer',
                 'active' =>1
            ),
@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
                 'fullname'=>'أبو الحروف',
 	        'username'=>'abo.7oroof',
                 'website'=>'',
-	        'password' =>'password',
+	        'password' =>Hash::make('password'),
                 'bio' =>'',
                 'active' =>1
            ),
@@ -42,7 +42,7 @@ class UsersTableSeeder extends Seeder
                 'fullname'=>'',
 	        'username'=>'ahmed',
                 'website'=>'',
-	        'password' =>'',
+	        'password' =>Hash::make('password'),
                 'bio' =>'',
                 'active' =>1
            ),
@@ -51,7 +51,7 @@ class UsersTableSeeder extends Seeder
                 'fullname'=>'',
 	        'username'=>'Mohamed',
                 'website'=>'',
-	        'password' =>'',
+	        'password' =>Hash::make('password'),
                 'bio' =>'',
                 'active' =>1
            )

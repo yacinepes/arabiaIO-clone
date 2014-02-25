@@ -13,7 +13,7 @@ class CommunitiesTableSeeder extends Seeder {
 
     public function run() 
     {
-        $creatorUser = User::find(1);
+        $creatorUser = User::whereUsername('hichem')->first();
         
         $communitiesArray = array(
             array(
