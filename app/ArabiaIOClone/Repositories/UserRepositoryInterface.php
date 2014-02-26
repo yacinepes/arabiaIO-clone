@@ -14,9 +14,10 @@ interface UserRepositoryInterface
     
     public function findByUsername($username);
     
-    public function findByEmail($email);
-    
-    public function create(array $data);
+//    
+//    public function findByEmail($email);
+//    
+//    public function create(array $data);
 }
 
 ?>

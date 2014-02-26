@@ -18,17 +18,17 @@
 </script><script type="text/javascript" src="{{asset('js/jquery.tag-it.js')}}">
 </script><script type="text/javascript" src="{{asset('js/select2.jquery.min.js')}}">
 </script><script type="text/javascript" src="{{asset('js/jquery.dropdown.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/jquery.nailthumb.1.1.min.js')}}"></script>
+<!--<script type="text/javascript" src="{{asset('js/jquery.nailthumb.1.1.min.js')}}"></script>-->
 <script type="text/javascript" src="{{asset('js/application.js')}}"></script>
 <!--[if lt IE 10 ]><script type="text/javascript" src="/js/application.ie.js?070113"></script><![endif]--> 
-<script type="text/javascript" src="{{asset('js/fileuploader.js')}}"></script>
+<!--<script type="text/javascript" src="{{asset('js/fileuploader.js')}}"></script>-->
 <link rel="alternate" type="application/rss+xml" title="Arabia I/O - الأكثر شعبية" href="https://arabia.io/rss.xml" />
 <link rel="alternate" type="application/rss+xml" title="Arabia I/O - أحدث المساهمات" href="https://arabia.io/new/rss.xml" />
 <!--<meta property="og:title" content="Arabia I&#x2F;O" />
 <meta property="og:description" content="يمكنك هنا طرح ومناقشة الأفكار والقضايا التقنية والعلمية والمشاركة في العديد من المجتمعات المختلفة." />
 <meta property="og:image" content="https://arabia.io/images/arabiaio-icon.png" />
 <meta property="og:image" content="https://arabia.io/images/arabiaio-large.png" />-->
-<script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+<!--<script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>-->
 @yield('scripts')
 </head>
 <body>
@@ -76,18 +76,11 @@
 @include('partials.footer_copyright')
 <!---->
 <!-- drop down menu when  logged in -->
-@include('partials.dropdown_user')
 
-@include('partials.dropdown_add_post')
 
-@include('partials.dropdown_notifications')
+<!--<input id="user_token" type='hidden' name='token' value='491d4440dfdc7a9d32d9f12ed9c42cf0e81ad1d8' />-->
 
-@include('partials.dropdown_search')
-
-@include('partials.dropdown_communities')
-
-<!--<input id="user_token" type='hidden' name='token' value='491d4440dfdc7a9d32d9f12ed9c42cf0e81ad1d8' />
-
+<!--
 <div id="shadow_box"></div>
 
 <div id="dialog_form"><div id="dialog_title"></div>
@@ -96,7 +89,7 @@
 
 <div id="dialog_buttons" class="clear"></div>
 
-<div class="clear"></div></div>-->
+<div class="clear"></div></div>-->>
 
 @yield('analytics')
 

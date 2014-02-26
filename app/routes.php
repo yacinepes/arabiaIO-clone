@@ -11,7 +11,76 @@
 |
 */
 
-Route::get('/', function()
-{
-    return View::make('layouts.main');
+
+Route::group(array('before' => 'auth'), function(){
+    
+    Route::group(array('before' => 'csrf'), function(){
+    
+        
+    });
+    
+    Route::get('account/logout',[
+       'as'=>'account-logout',
+        'uses'=> 'AccountController@getLogout'
+    ]);
 });
+
+Route::group(array('before' => 'guest'), function(){
+    
+    Route::group(array('before' => 'csrf'), function(){
+        
+        Route::post('/account/create',[
+        'as' =>'account-create-post',
+        'uses' => 'AccountController@postCreate'
+        ]);
+        
+        Route::post('/account/login',[
+            'as'=>'account-login',
+            'uses' => 'AccountController@postLogin'
+        ]);
+        
+//        Route::post('/account/forgot-password',array(
+//        'as' => 'account-forgot-password',
+//        'uses' => 'AccountController@postForgotPassword'
+//        ));
+//        
+
+    });
+    
+    
+    
+//    Route::get('/account/forgot-password',array(
+//        'as' => 'account-forgot-password',
+//        'uses' => 'AccountController@getForgotPassword'
+//    ));
+    
+//    Route::get('/account/recover-password/{code}',array(
+//        'as'=> 'account-recover-password',
+//        'uses' => 'AccountController@getRecoverPassword'
+//    ));
+    
+    Route::get('/account/login',[
+        'as'=>'account-login',
+        'uses' => 'AccountController@getLogin'
+        ]);
+    
+//    Route::get('/account/create',array(
+//        'as' =>'account-create',
+//        'uses' => 'AccountController@getCreate'
+//    ));
+    
+//    Route::get('/account/activate/{code}',array(
+//        'as' => 'account-activate',
+//        'uses' => 'AccountController@getActivate'
+//    ));
+
+});
+
+Route::get('/user/{username}',[
+    'as'=>'user-index','uses'=>'UserController@getIndex'
+    ]);
+
+Route::get('/',['as'=>'default','uses'=> 'PostController@getDefault']);
+    
+
+

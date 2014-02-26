@@ -1,29 +1,20 @@
-@if(Auth::check())
-<div id="dropdown-user" class="dropdown dropdown-tip">
-    <ul class="dropdown-menu">
-        <li><a href="/u/hichem"><i class="icon-user"></i> hichem</a></li>
-        <li><a href="/account"><i class="icon-edit"></i> تعديل حسابي</a></li>
-        <li><a href="/messages"><i class="icon-envelope"></i> الرسائل الخاصة</a></li>
-        <li><a href="/logout"><i class="icon-signout"></i> خروج</a></li>
-    </ul>
-</div>
-@else
 <!-- drop down menu when not logged in -->
-<div style="display: block; left: 115.2px; top: 86px;" id="dropdown-login" class="dropdown dropdown-tip">
+<!--<div style="display: inline; left: 385px; top: 86px;" id="dropdown-login" class="dropdown dropdown-tip">-->
     <div class="dropdown-panel">
         <div id="login_form_wrapper" class="right">
             <h3>تسجيل دخول</h3>
-            <form id="login_form" action="/" method="post">
+            <form id="login_form" action="{{route('account-login')}}" method="post">
                 <div id="login_form_inputs">
                     <p><input name="username" class="inputtext" placeholder="اسم المستخدم" type="text"></p>
                     <p><input name="password" class="inputtext" placeholder="كلمة المرور" type="password"></p>
                     <p><a id="password_btn" href="#"><span class="smalltext">فقدت كلمة المرور؟</span></a></p>
-                    <input name="follow_category" value="" type="hidden">
-                    <div class="clear"></div>
                     
+                    <div class="clear"></div>
+                    {{Form::token()}}
                 </div>
                 <p><input value="دخول" class="button" type="submit"></p>
-            </form></div><div id="password_form_wrapper" class="hidden right">
+            </form>
+        </div><div id="password_form_wrapper" class="hidden right">
                 <h3>استعادة كلمة المرور</h3>
                 <form id="password_form" action="/" method="post">
                     <div id="password_form_inputs">
@@ -33,7 +24,7 @@
                         
                     </div>
                     <p><input value="أرسل" class="button" type="submit"></p>
-                </form></div><div id="signup_form_wrapper" class="left">
+                </form></div><div id="signup_form_wrapper" class="right">
                     <h3>مستخدم جديد</h3>
                     <form id="signup_form" action="/" method="post">
                         <div id="signup_form_inputs">
@@ -43,5 +34,8 @@
                             <input name="follow_category" value="" type="hidden">
                             <div class="clear"></div></div>
                         <p><input value="تسجيل" class="button" type="submit"></p>
-                    </form></div><div class="clear"></div></div></div>
-@endif
+                    </form></div>
+                    <div class="clear">
+            </div>
+    </div>
+               <!--</div>-->

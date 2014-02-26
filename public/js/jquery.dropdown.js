@@ -12,7 +12,7 @@ if(jQuery) (function($) {
 	
 	$.extend($.fn, {
 		dropdown: function(method, data) {
-			
+			console.log('dropfunction');
 			switch( method ) {
 				case 'hide':
 					hide();
@@ -33,7 +33,7 @@ if(jQuery) (function($) {
 	});
 	
 	function show(event) {
-		
+		console.log('show');
 		var trigger = $(this),
 			dropdown = $(trigger.attr('data-dropdown')),
 			isOpen = trigger.hasClass('dropdown-open');
@@ -66,7 +66,8 @@ if(jQuery) (function($) {
 	}
 	
 	function hide(event) {
-		
+		return;
+		console.log('hide');
 		// In some cases we don't hide them
 		var targetGroup = event ? $(event.target).parents().addBack() : null;
 		
@@ -97,7 +98,7 @@ if(jQuery) (function($) {
 	}
 	
 	function position() {
-		
+		console.log('position');
 		var dropdown = $('.dropdown:visible').eq(0),
 			trigger = dropdown.data('dropdown-trigger'),
 			hOffset = trigger ? parseInt(trigger.attr('data-horizontal-offset') || 0, 10) : null,
@@ -122,6 +123,7 @@ if(jQuery) (function($) {
 			});
 		}
 	}
+	
 	
 	$(document).on('click.dropdown', '[data-dropdown]', show);
 	$(document).on('click.dropdown', hide);
