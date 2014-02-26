@@ -6,7 +6,7 @@
         <div id="user_nav" class="left">
         	<a id="user_btn" 
                    @if(Auth::check())
-                     href="{{route('user-index',['username'=>Auth::user()->username])}}" 
+                     href="{{route('user-index',array('username'=>Auth::user()->username))}}" 
                    @else
                      href="{{route('account-login')}}" 
                    @endif

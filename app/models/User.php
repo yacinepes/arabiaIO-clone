@@ -33,7 +33,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
                             'active');
         
         public static $loginRules = array(
-            'username' => 'required',
+            'username' => 'required|alpha_dash',
             'password' => 'required'
         );
 

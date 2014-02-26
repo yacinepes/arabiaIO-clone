@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>@yield('title')| Arabia I&#x2F;O</title>
+<title>@yield('title') | Arabia I&#x2F;O Clone</title>
 <meta name="description" content="يمكنك هنا طرح ومناقشة الأفكار والقضايا التقنية والعلمية والمشاركة في العديد من المجتمعات المختلفة." />
 <meta name="keywords" content="نقاش، أفكار، تقنية، علمي، مجتمعات، مجتمع، تطوير, ويب, الويب, مطوري, تجارة الكترونية, تسويق, إعلان, العمل الحر, اعلام اجتماعي" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
