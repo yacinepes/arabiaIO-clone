@@ -6,10 +6,10 @@
     <div class="clear"></div>
     </div>
 <div id="page_content">
-	<form action="/add/post" method="post" class="form largeform">
+	<form action="{{route('post-submit')}}" method="post" class="form largeform">
 		<p>
 			<label>المجتمع:</label>
-			<div id="s2id_autogen1" class="select2-container category-select2 largeinput halfwidth">
+<!--			<div id="s2id_autogen1" class="select2-container category-select2 largeinput halfwidth">
 				<a href="javascript:void(0)" onclick="return false;" class="select2-choice" tabindex="-1">
 				<span class="select2-chosen">برمجة عامة</span>
 				<abbr class="select2-search-choice-close"></abbr>
@@ -23,8 +23,9 @@
 					<ul class="select2-results">
 					</ul>
 				</div>
-			</div>
-			<select tabindex="-1" name="community" class="category-select2 largeinput halfwidth select2-offscreen">
+			</div>-->
+                        {{Form::select('community_id',$communities,0,array('class'=>'chosen-select chosen-rtl'))}}
+<!--			<select tabindex="-1" name="community" class="chosen-select chosen-rtl">
 				<option value=""></option>
 				<option value="webdev" alt="تطوير الويب">تطوير الويب</option>
 				<option value="programming" alt="برمجة عامة" selected="selected">برمجة عامة</option>
@@ -41,7 +42,7 @@
 				<option value="git" alt="git">Git</option>
 				<option value="DOTNET" alt="مطوري الدوت نت net">مطوري الدوت نت .NET</option>
 				<option value="AsnadPublicStore" alt="منتجات اسناد">منتجات أسناد</option>
-			</select>
+			</select>-->
 		</p>
 		<div class="clear">
 		</div>
@@ -53,7 +54,7 @@
                 <p>
 
                    <label> الرابط المباشر</label>
-                    <input class="largeinput fullwidth ltr" type="text" value="" name="url"></input>
+                    <input class="largeinput fullwidth ltr" type="text" value="" name="link"></input>
 
                 </p>
                 <div class="clear">
@@ -72,7 +73,10 @@
 		<div class="clear">
 		</div>
 		<p>
-			<input id="user_token" name="token" value="491d4440dfdc7a9d32d9f12ed9c42cf0e81ad1d8" type="hidden"><input id="format_post_btn" class="largebutton rightf" value="طريقة تنسيق الموضوع" type="button"><input id="preview_post_btn" class="largebutton leftf" value="معاينة" type="button"><input class="largebutton leftf" value="أرسل" type="submit">
+			{{Form::token()}}
+<!--                        <input id="format_post_btn" class="largebutton rightf" value="طريقة تنسيق الموضوع" type="button">
+                        <input id="preview_post_btn" class="largebutton leftf" value="معاينة" type="button">-->
+                        <input class="largebutton leftf" value="أرسل" type="submit">
 		</p>
 	</form>
 	<div class="clear">

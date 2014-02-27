@@ -15,11 +15,12 @@
 Route::group(array('before' => 'auth'), function(){
     
     Route::group(array('before' => 'csrf'), function(){
-    
+        
+        Route::post('post/submit',['as'=>'post-submit','uses'=>'PostController@postSubmit']);
         
     });
     
-    Route::get('/post/submit',['as'=>'post-submit','uses'=>'PostController@getSubmit']);
+    Route::get('post/submit',['as'=>'post-submit','uses'=>'PostController@getSubmit']);
     
     Route::get('account/logout',array(
        'as'=>'account-logout',

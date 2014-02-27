@@ -25,7 +25,7 @@
            	<a id="search_btn" href="#" title="بحث" >
            		<i class="fa fa-search"></i></a> 
        		<a id="categories_btn" href="#" title="المجتمعات" >
-       			<i class="fa fa-bars"></i>
+       			<i class="fa fa-users"></i>
        		</a> 
                 @if(Auth::check())
        		<a id="logout_btn" href="{{route('account-logout')}}" title="خروج" >

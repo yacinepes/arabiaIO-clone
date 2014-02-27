@@ -30,18 +30,12 @@ $(document).ready(function () {
         replaceAnimation: null
     });*/
     
-    
+    //http://harvesthq.github.io/chosen/options.html
+    $(".chosen-select").chosen({
+        width:"250px"
+        
+    });
 
-    $(".dropdown-right").on("click", function () {
-        var k = $(this).attr("data-dropdown");
-        $(k).addClass("dropdown-anchor-right")
-    });
-    
-    
-    
-    $("#dropdown-login").on("hide", function (l, k) {
-        $(this).removeClass("dropdown-anchor-right")
-    });
     
     /*jQuery.fn.show_dialog = function () {
         $("#shadow_box").css("display", "inline");

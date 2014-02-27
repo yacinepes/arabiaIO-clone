@@ -9,6 +9,8 @@
 @yield('meta')
 {{ HTML::style('/css/style.css'); }}
 {{ HTML::style('/css/font-awesome.css'); }}
+{{ HTML::style('/chosen/chosen.css'); }}
+
 <!--<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">-->
 
 @yield('styles')
@@ -18,6 +20,7 @@
 </script><script type="text/javascript" src="{{asset('js/jquery.tag-it.js')}}">
 </script><script type="text/javascript" src="{{asset('js/select2.jquery.min.js')}}">
 </script><script type="text/javascript" src="{{asset('js/jquery.dropdown.js')}}"></script>
+ <script src="{{asset('chosen/chosen.jquery.js')}}" type="text/javascript"></script>
 <!--<script type="text/javascript" src="{{asset('js/jquery.nailthumb.1.1.min.js')}}"></script>-->
 <script type="text/javascript" src="{{asset('js/application.js')}}"></script>
 <!--[if lt IE 10 ]><script type="text/javascript" src="/js/application.ie.js?070113"></script><![endif]--> 

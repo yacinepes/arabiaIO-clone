@@ -7,3 +7,11 @@
     </div>
 @endif
 
+@if(Session::has('success'))
+    <div class="msg_box tcenter success">
+        @foreach(Session::get('success') as $success)
+        <li>{{$success}}</li>
+        @endforeach
+    </div>
+@endif
+

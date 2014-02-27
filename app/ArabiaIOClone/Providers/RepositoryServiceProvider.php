@@ -24,6 +24,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'ArabiaIOClone\Repositories\UserRepositoryInterface',
             'ArabiaIOClone\Repositories\Eloquent\UserRepository'
         );
+         
+         $this->app->bind(
+            'ArabiaIOClone\Repositories\PostRepositoryInterface',
+            'ArabiaIOClone\Repositories\Eloquent\PostRepository'
+        );
     }
 }
 
