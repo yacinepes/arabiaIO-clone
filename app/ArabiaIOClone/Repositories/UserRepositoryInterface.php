@@ -11,6 +11,8 @@ namespace ArabiaIOClone\Repositories;
 
 interface UserRepositoryInterface 
 {
+    public function getLoginForm();
+    
     
     public function findByUsername($username);
     

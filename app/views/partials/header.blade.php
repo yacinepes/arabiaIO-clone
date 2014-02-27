@@ -6,7 +6,7 @@
         <div id="user_nav" class="left">
         	<a id="user_btn" 
                    @if(Auth::check())
-                     href="{{route('user-index',array('username'=>Auth::user()->username))}}" 
+                     href="{{route('user-index',[Auth::user()->username])}}" 
                    @else
                      href="{{route('account-login')}}" 
                    @endif
@@ -17,9 +17,11 @@
             <!-- <a id="notifications_btn" href="/notifications"  data-dropdown="#dropdown-notifications" title="التنبيهات">
             	<i class="fa fa-flag"></i>
             </a> -->
-           	<a id="add_btn" href="#"   title="أضف مساهمة جديدة">
+                @if(Auth::check())
+           	<a id="add_btn" href="{{route('post-submit')}}"   title="أضف مساهمة جديدة">
            		<i class="fa fa-plus-square"></i>
            	</a> 
+                @endif
            	<a id="search_btn" href="#" title="بحث" >
            		<i class="fa fa-search"></i></a> 
        		<a id="categories_btn" href="#" title="المجتمعات" >

@@ -32,10 +32,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
                             'bio',
                             'active');
         
-        public static $loginRules = array(
-            'username' => 'required|alpha_dash',
-            'password' => 'required'
-        );
+        
 
         /**
 	 * Get the unique identifier for the user.

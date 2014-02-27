@@ -21,6 +21,11 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         $this->model = $user;
     }
     
+    public function getLoginForm()
+    {
+        return app('ArabiaIOClone\Services\Forms\LoginForm');
+    }
+    
     public function findByUsername($username)
     {
         return $this->model->whereUsername($username)->first();

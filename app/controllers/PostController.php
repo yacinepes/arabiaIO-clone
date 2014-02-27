@@ -11,6 +11,11 @@ class PostController extends BaseController
     {
         return View::make('posts.browse');
     }
+    
+    public function getSubmit()
+    {
+        return View::make('posts.submit');
+    }
 }
 
 ?>

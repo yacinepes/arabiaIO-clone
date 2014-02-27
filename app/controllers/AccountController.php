@@ -32,13 +32,13 @@ class AccountController extends BaseController
     
     public function postLogin()
     {
-        $validator = Validator::make(Input::all(),User::$loginRules);
+        $loginForm = $this->users->getLoginForm();
         
         // 1. validator fails
-        if ($validator->fails())
+        if (!$loginForm->isValid())
         {
             return  Redirect::route('account-login')
-                ->withErrors($validator);
+                ->withErrors($loginForm->getErrors());
         }
         
         
@@ -59,6 +59,7 @@ class AccountController extends BaseController
             }else
             {
                 return Redirect::route('account-login')
+                        ->withInput()
                         ->withErrors(Lang::get('errors.login_wrong_credentials'));
             }
         }
@@ -74,7 +75,8 @@ class AccountController extends BaseController
         }
         
         return Redirect::route('account-login')
-                        ->withErrors(Lang::get('errors.login_wrong_credentials'));
+                    ->withInput()
+                    ->withErrors(Lang::get('errors.login_wrong_credentials'));
 
         
     }

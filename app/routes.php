@@ -19,6 +19,8 @@ Route::group(array('before' => 'auth'), function(){
         
     });
     
+    Route::get('/post/submit',['as'=>'post-submit','uses'=>'PostController@getSubmit']);
+    
     Route::get('account/logout',array(
        'as'=>'account-logout',
         'uses'=> 'AccountController@getLogout'
