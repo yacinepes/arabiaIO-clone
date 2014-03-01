@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"mccool/laravel-auto-presenter": "*",
-		"baum/baum": "~1.0"
+		"baum/baum": "~1.0",
+                "kevinlebrun/slug.php": "1.*"
 	},
 	"autoload": {
 		"classmap": [

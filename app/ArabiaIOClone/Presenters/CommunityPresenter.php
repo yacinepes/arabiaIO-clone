@@ -8,6 +8,9 @@
 
 namespace ArabiaIOClone\Presenters;
 
+use McCool\LaravelAutoPresenter\BasePresenter;
+use \Community;
+
 class CommunityPresenter extends BasePresenter
 {
     public function __construct(Community $community)

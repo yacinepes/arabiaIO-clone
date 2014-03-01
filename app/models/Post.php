@@ -9,9 +9,11 @@ class Post extends Eloquent
 {
     protected $table = 'posts';
     
-    protected $fillable = array('title', 'user_id','community_id', 'content', 'link','sumvotes');
+    public $presenter = 'ArabiaIOClone\Presenters\PostPresenter';
     
-    protected function users() 
+    protected $fillable = array('title','slug', 'user_id','community_id', 'content', 'link','sumvotes');
+    
+    public function users() 
     {
         return $this->belongsTo('User','user_id');
     }
@@ -21,14 +23,14 @@ class Post extends Eloquent
         return $this->users()->get()->first();
     }
     
-    protected function communities() 
+    public function communities() 
     {
         return $this->belongsTo('Community','community_id');
     }
     
     public function community()
     {
-        return $this->users()->get()->first();
+        return $this->communities()->get()->first();
     }
     
     

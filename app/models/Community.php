@@ -9,7 +9,7 @@ class Community extends Eloquent
 {
     protected $table = 'communities';
     
-    public $presenter = 'Presenters\CommunityPresenter';
+    public $presenter = 'ArabiaIOClone\Presenters\CommunityPresenter';
     
     protected $fillable = array('name', 'slug','description','creator_id');
     

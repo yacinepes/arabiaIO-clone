@@ -5,6 +5,7 @@ namespace ArabiaIOClone\Repositories\Eloquent;
 use ArabiaIOClone\Repositories\Eloquent\AbstractRepository;
 use ArabiaIOClone\Repositories\PostRepositoryInterface;
 use Post;
+use Slug\Slugifier;
 /**
  * Description of PostRepository
  *
@@ -22,7 +23,7 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
         return $this->model
                     ->orderByRaw('(sumvotes) / POW(((UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(created_at))/3600)+2, 1.8) DESC')
                     ->with('users')
-                    //->with('comments')
+                    ->with('comments')
                     ->with('communities')
                     ->paginate($perPage);
     }
@@ -34,8 +35,11 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
     
     public function create($data)
     {
+        $slugifier = new Slugifier;
+        $slug = $slugifier->slugify($data['title']);
         $post =  Post::create(array(
                 'title' => $data['title'],
+                'slug' => $slug,
                 'link' => $data['link'],
                 'content'=>$data['content'],
                 'user_id' => $data['user_id'],

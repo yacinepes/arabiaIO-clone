@@ -19,7 +19,7 @@
 	<!-- this changes from page to page, add section here -->
 	<div id="posts">
             @foreach($posts as $post)
-                @include('posts.listitem',$post)
+                @include('partials.post.listitem',compact($post))
             @endforeach
 <!--		<div id="post-5154" class="post">
 			<div class="post_vote">

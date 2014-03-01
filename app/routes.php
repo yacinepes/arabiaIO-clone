@@ -86,6 +86,8 @@ Route::get('/user/{username}',array(
 Route::get('/',array(
     'as'=>'default','uses'=> 'PostController@getDefault'
     ));
+
+Route::get('/post/view',['as'=>'post-view','uses'=>'PostController@getView']);
     
 
 
