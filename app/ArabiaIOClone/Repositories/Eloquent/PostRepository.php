@@ -17,6 +17,16 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
         parent::__construct($post);
     }
     
+    public function findMostPopular($perPage = 15)
+    {
+        return $this->model
+                    ->orderByRaw('(sumvotes) / POW(((UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(created_at))/3600)+2, 1.8) DESC')
+                    ->with('users')
+                    //->with('comments')
+                    ->with('communities')
+                    ->paginate($perPage);
+    }
+    
     public function getPostSubmitForm() 
     {
         return  app('ArabiaIOClone\Services\Forms\PostSubmitForm');

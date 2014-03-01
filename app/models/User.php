@@ -33,6 +33,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
                             'active');
         
         
+        
+        public function posts() 
+        {
+            return $this->hasMany('Post','user_id');
+        }
+        
+        public function comments()
+        {
+            return $this->hasMany('Comment','user_id');
+        }
+        
+        public function votes() 
+        {
+            return $this->hasMany('Vote','user_id');
+        }
 
         /**
 	 * Get the unique identifier for the user.

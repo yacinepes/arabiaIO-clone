@@ -29,7 +29,9 @@ class PostController extends BaseController
     
     public function getDefault()
     {
-        return View::make('posts.browse');
+        $posts = $this->posts->findMostPopular();
+        return View::make('posts.browse')
+                ->with('posts',$posts);
     }
     
     public function getSubmit()

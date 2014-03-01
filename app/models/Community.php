@@ -18,6 +18,11 @@ class Community extends Eloquent
     {
         return $this->belongsTo('User','creator_id');
     }
+    
+    public function posts() 
+    {
+        return $this->hasMany('Post','community_id');
+    }
 }
 
 ?>
