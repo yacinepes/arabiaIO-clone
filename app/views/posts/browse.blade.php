@@ -67,7 +67,7 @@
 		<br/>
 	</div>
 	<div id="more_content">
-		<input id="page_url" type="hidden" value="&#x2F;"/><input id="loadmore_btn" type="button" class="button" value="عرض المزيد"/>
+		{{$posts->links()}}
 	</div>
 </div>
 <div id="home_sidebar" class="sidebar">
