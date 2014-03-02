@@ -177,5 +177,14 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 
 	),
+    
+    'user' => array(
+            
+        'enoughKarmaToVoteDown' => 0,
+        'enoughKarmaToPost' => 0,
+        'enoughKarmaToComment' => 0,
+        'enoughKarmaToCreateCommunity' => 0
+        
+    )
 
 );

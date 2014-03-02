@@ -22,6 +22,8 @@ class CommunityPresenter extends BasePresenter
     {
         return $this->resource->name;
     }
+    
+   
 }
 
 ?>

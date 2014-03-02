@@ -35,6 +35,71 @@ $(document).ready(function () {
         width:"250px"
         
     });
+    
+    $(".upvote_btn").live("click", function (m) {
+        m.preventDefault();
+        var k = $(this).attr("id").split("-")[1];
+        var l = $("#user_token").val();
+        var base_url = $("#base_url").val();
+        var n = $(this).parent().parent().find(".post_points");
+        if (l) {
+            $.post(base_url + "/post/" + k + "/upvote", {
+                _token: l
+            }, function (o) {
+                if (typeof o.points != "undefined") {
+                    n.text(o.points).fadeOut(200).fadeIn(200)
+                }
+                if (o.msg) {
+                   /* show_alert({
+                        title: "تنبيه",
+                        body: o.msg,
+                        button_text: "إغلاق",
+                        action: "close"
+                    })*/
+                    alert(o.msg);
+                }
+            }, "json")
+        } else {
+            show_alert({
+                title: "تنبيه",
+                body: "يجب أن تسجّل دخول لتتمكّن من التقييم",
+                button_text: "إغلاق",
+                action: "close"
+            })
+        }
+    });
+    $(".downvote_btn").live("click", function (m) {
+        m.preventDefault();
+        var k = $(this).attr("id").split("-")[1];
+        var l = $("#user_token").val();
+        var base_url = $("#base_url").val();
+        var n = $(this).parent().parent().find(".post_points");
+        if (l) {
+            $.post(base_url + "/post/" + k + "/downvote", {
+                _token: l
+            }, function (o) {
+                if (typeof o.points != "undefined") {
+                    n.text(o.points).fadeOut(200).fadeIn(200)
+                }
+                if (o.msg) {
+                    /*show_alert({
+                        title: "تنبيه",
+                        body: o.msg,
+                        button_text: "إغلاق",
+                        action: "close"
+                    })*/
+                    alert(o.msg);
+                }
+            }, "json")
+        } else {
+            show_alert({
+                title: "تنبيه",
+                body: "يجب أن تسجّل دخول لتتمكّن من التقييم",
+                button_text: "إغلاق",
+                action: "close"
+            })
+        }
+    });
 
     
     /*jQuery.fn.show_dialog = function () {
@@ -697,66 +762,9 @@ $(document).ready(function () {
         $("#loadmore_btn").addClass("loadmore_auto");
         a()
     });
-    $(".upvote_btn").live("click", function (m) {
-        m.preventDefault();
-        var k = $(this).attr("id").split("-")[1];
-        var l = $("#user_token").val();
-        var n = $(this).parent().parent().find(".post_points");
-        if (l) {
-            $.post("/post/" + k + "/upvote", {
-                token: l
-            }, function (o) {
-                if (typeof o.points != "undefined") {
-                    n.text(o.points).fadeOut(200).fadeIn(200)
-                }
-                if (o.msg) {
-                    show_alert({
-                        title: "تنبيه",
-                        body: o.msg,
-                        button_text: "إغلاق",
-                        action: "close"
-                    })
-                }
-            }, "json")
-        } else {
-            show_alert({
-                title: "تنبيه",
-                body: "يجب أن تسجّل دخول لتتمكّن من التقييم",
-                button_text: "إغلاق",
-                action: "close"
-            })
-        }
-    });
-    $(".downvote_btn").live("click", function (m) {
-        m.preventDefault();
-        var k = $(this).attr("id").split("-")[1];
-        var l = $("#user_token").val();
-        var n = $(this).parent().parent().find(".post_points");
-        if (l) {
-            $.post("/post/" + k + "/downvote", {
-                token: l
-            }, function (o) {
-                if (typeof o.points != "undefined") {
-                    n.text(o.points).fadeOut(200).fadeIn(200)
-                }
-                if (o.msg) {
-                    show_alert({
-                        title: "تنبيه",
-                        body: o.msg,
-                        button_text: "إغلاق",
-                        action: "close"
-                    })
-                }
-            }, "json")
-        } else {
-            show_alert({
-                title: "تنبيه",
-                body: "يجب أن تسجّل دخول لتتمكّن من التقييم",
-                button_text: "إغلاق",
-                action: "close"
-            })
-        }
-    });
+    */
+    
+    /*
     $(".comment_upvote_btn").live("click", function (n) {
         n.preventDefault();
         var m = $(this).attr("id").split("-")[1];

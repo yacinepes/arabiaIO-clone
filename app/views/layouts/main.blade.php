@@ -81,7 +81,8 @@
 <!-- drop down menu when  logged in -->
 
 
-<!--<input id="user_token" type='hidden' name='token' value='491d4440dfdc7a9d32d9f12ed9c42cf0e81ad1d8' />-->
+<input id="user_token" type='hidden' name='_token' value='{{csrf_token()}}' />
+<input id="base_url" type='hidden' name='_baseUrl' value='{{Request::root()}}' />
 
 <!--
 <div id="shadow_box"></div>

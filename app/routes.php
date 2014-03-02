@@ -12,6 +12,13 @@
 */
 
 
+Route::group(array('before' => 'csrf'), function(){
+    
+    Route::post('post/{id}/upvote',['as'=>'post-upvote','uses'=>'VoteController@postUpvotePost']);
+    Route::post('post/{id}/downvote',['as'=>'post-down','uses'=>'VoteController@postDownvotePost']);
+});
+
+
 Route::group(array('before' => 'auth'), function(){
     
     Route::group(array('before' => 'csrf'), function(){
@@ -79,15 +86,24 @@ Route::group(array('before' => 'guest'), function(){
 
 });
 
+Route::get('/community/{communitySlug}',['as'=>'community-view','uses'=>'CommunitiyController@getView']);
+
 Route::get('/user/{username}',array(
     'as'=>'user-index','uses'=>'UserController@getIndex'
+    ));
+
+Route::get('/post/view/{postId}-{postSlug}',['as'=>'post-view','uses'=>'PostController@getView']);
+
+
+Route::get('/post/browse/popular',array(
+    'as'=>'post-browse-popular','uses'=> 'PostController@getMostPopular'
     ));
 
 Route::get('/',array(
     'as'=>'default','uses'=> 'PostController@getDefault'
     ));
 
-Route::get('/post/view',['as'=>'post-view','uses'=>'PostController@getView']);
+
     
 
 

@@ -17,6 +17,25 @@ class PostPresenter extends BasePresenter
         $this->resource = $post;
     }
     
+    public function getCreationDateDiffForHumans()
+    {
+        return $this->resource->created_at->diffForHumans();
+    }
+    
+    public function getRouteToPost()
+    {
+        return route('post-view',[
+            'postId'=>$this->resource->id,
+            'postSlug' => $this->resource->slug
+                
+                ]);
+    }
+    
+    public function getRouteToCommunity()
+    {
+        return route('community-view',array('communitySlug'=>$this->resource->community()->slug));
+    }
+    
     public function getTitleHTMLTag()
     {
         if($this->resource->link)
@@ -33,7 +52,7 @@ class PostPresenter extends BasePresenter
         
         }else
         {
-            $result = "<a href='".route('post-view')."'>".$this->resource->title."</a>";
+            $result = "<a href='".$this->getRouteToPost()."'>".$this->resource->title."</a>";
             return $result;
         }
     }

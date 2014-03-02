@@ -16,6 +16,8 @@ interface  PostRepositoryInterface
     public function create($data);
     
     public function findMostPopular($perPage);
+    
+    public function findById($postId);
 }
 
 ?>

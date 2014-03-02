@@ -18,6 +18,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 {
     public function __construct(User $user)
     {
+        parent::__construct($user);
         $this->model = $user;
     }
     

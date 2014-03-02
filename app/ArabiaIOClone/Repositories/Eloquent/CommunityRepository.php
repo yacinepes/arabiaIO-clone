@@ -16,6 +16,8 @@ class CommunityRepository extends AbstractRepository implements CommunityReposit
     {
         parent::__construct($community);
         
+        $this->model = $community;
+        
     }
     
     public function findAll($orderColumn = 'created_at', $orderDir='desc')

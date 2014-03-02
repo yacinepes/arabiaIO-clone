@@ -16,6 +16,12 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
     public function __construct(Post $post) 
     {
         parent::__construct($post);
+        $this->model =$post;
+    }
+    
+    public function findById($postId)
+    {
+        return $this->model->find($postId);
     }
     
     public function findMostPopular($perPage = 15)

@@ -22,8 +22,6 @@ class UserController extends BaseController
     {
         parent::__construct();
 
-        //$this->beforeFilter('auth', [ 'except' => 'getPublic' ]);
-
         $this->user = Auth::user();
         
         $this->users = $users;
