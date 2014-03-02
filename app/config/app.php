@@ -109,6 +109,7 @@ return array(
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 		'Baum\BaumServiceProvider',
                 'ArabiaIOClone\Providers\RepositoryServiceProvider',
+                'ArabiaIOClone\Providers\ObserverServiceProvider',
 
 	),
 

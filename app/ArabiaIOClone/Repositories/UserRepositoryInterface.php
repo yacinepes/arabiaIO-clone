@@ -13,6 +13,7 @@ interface UserRepositoryInterface
 {
     public function getLoginForm();
     
+    public function updateReputation($user);
     
     public function findByUsername($username);
     

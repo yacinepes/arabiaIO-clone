@@ -22,6 +22,30 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         $this->model = $user;
     }
     
+    public function updateReputation($user)
+    {
+        //$user = $this->model->find($userId);
+        $postVotes = 0;
+        foreach($user->posts()->get() as $post)
+        {
+            $postVotes +=  $post->sumvotes;
+        }
+
+        $commentVotes = 0;
+        foreach($user->comments()->get() as $comment)
+        {
+            $commentVotes += $comment->sumvotes;
+        }
+
+        $reputation = $postVotes + $commentVotes; 
+
+        $user->reputation = $reputation;
+        //$user->reputation = 150;
+        $user->save();
+        
+        
+    }
+    
     public function getLoginForm()
     {
         return app('ArabiaIOClone\Services\Forms\LoginForm');

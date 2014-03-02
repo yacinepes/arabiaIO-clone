@@ -41,7 +41,7 @@ class PostsTableSeeder extends Seeder
 
 		}
 	
-        /*$userHichem = User::whereUsername('hichem')->first();
+        $userHichem = User::whereUsername('hichem')->first();
         $communityWebDev = Community::whereSlug('webdev')->first();
 
 		for($i = 0; $i<50;$i++)
@@ -68,7 +68,7 @@ class PostsTableSeeder extends Seeder
 					
 				));
 
-		}*/
+		}
         
         
         
