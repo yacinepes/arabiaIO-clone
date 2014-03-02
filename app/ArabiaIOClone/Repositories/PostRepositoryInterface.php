@@ -23,6 +23,8 @@ interface  PostRepositoryInterface
     
     
     public function findById($postId);
+    
+    public function updateVoteSum($post);
 }
 
 ?>

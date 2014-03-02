@@ -16,7 +16,10 @@ class ObserverServiceProvider  extends ServiceProvider
     
     public function boot()
     {
-        Vote::observe(new VoteObserver(app('ArabiaIOClone\Repositories\UserRepositoryInterface')));
+        Vote::observe(new VoteObserver(
+                app('ArabiaIOClone\Repositories\UserRepositoryInterface'),
+                app('ArabiaIOClone\Repositories\PostRepositoryInterface')
+                ));
     }
     
     public function register()

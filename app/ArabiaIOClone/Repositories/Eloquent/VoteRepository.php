@@ -5,6 +5,7 @@ namespace ArabiaIOClone\Repositories\Eloquent;
 use ArabiaIOClone\Repositories\Eloquent\AbstractRepository;
 use ArabiaIOClone\Repositories\VoteRepositoryInterface;
 use \Vote;
+use \Post;
 /**
  * Description of VoteRepository
  *
@@ -25,16 +26,14 @@ class VoteRepository extends AbstractRepository implements VoteRepositoryInterfa
                         ->where("user_id",'=',$user->id)
                         ->first();
         
-        if($userVote) // user voted on post, should update
+        if($userVote) // user had voted on post, should update
         {
             $newVoteValue = max(-1,$userVote->vote - 1);
 
             $userVote->vote = $newVoteValue;
             $userVote->save();
             
-            $post->sumvotes = $post->votes()->sum('vote');
-            $post->save();
-            
+            $post = Post::find($post->id);
             return $post->sumvotes;
 
 
@@ -43,9 +42,8 @@ class VoteRepository extends AbstractRepository implements VoteRepositoryInterfa
             $newVote = $post->votes()->create([ 'user_id' => $user->id,
                                                 'vote' => -1,
                                             ]);
-            $post->sumvotes = $post->votes()->sum('vote');
-            $post->save();
-            
+
+            $post = Post::find($post->id);
             return $post->sumvotes;
         }
     }
@@ -57,16 +55,14 @@ class VoteRepository extends AbstractRepository implements VoteRepositoryInterfa
                         ->where("user_id",'=',$user->id)
                         ->first();
         
-        if($userVote) // user voted on post, should update
+        if($userVote) // user had voted on post, should update
         {
             $newVoteValue = min(1,$userVote->vote + 1);
 
             $userVote->vote = $newVoteValue;
             $userVote->save();
-            
-            $post->sumvotes = $post->votes()->sum('vote');
-            $post->save();
-            
+
+            $post = Post::find($post->id);
             return $post->sumvotes;
 
 
@@ -75,9 +71,8 @@ class VoteRepository extends AbstractRepository implements VoteRepositoryInterfa
             $newVote = $post->votes()->create([ 'user_id' => $user->id,
                                                 'vote' => 1,
                                             ]);
-            $post->sumvotes = $post->votes()->sum('vote');
-            $post->save();
-            
+
+            $post = Post::find($post->id);
             return $post->sumvotes;
         }
     }

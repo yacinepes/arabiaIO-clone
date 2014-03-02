@@ -74,6 +74,12 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
             ));
         return $post;
     }
+    
+    public function updateVoteSum($post)
+    {
+        $post->sumvotes = $post->votes()->sum('vote');
+        $post->save();
+    }
 }
 
 ?>
