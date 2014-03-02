@@ -17,6 +17,11 @@ interface  PostRepositoryInterface
     
     public function findMostPopular($perPage);
     
+    public function findMostRecent($perPage);
+    
+    public function findTop($perPage);
+    
+    
     public function findById($postId);
 }
 

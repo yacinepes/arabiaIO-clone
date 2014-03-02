@@ -95,8 +95,16 @@ Route::get('/user/{username}',array(
 Route::get('/post/view/{postId}-{postSlug}',['as'=>'post-view','uses'=>'PostController@getView']);
 
 
+Route::get('/post/browse/top',array(
+    'as'=>'post-browse-top','uses'=> 'PostController@getTop'
+    ));
+
 Route::get('/post/browse/popular',array(
     'as'=>'post-browse-popular','uses'=> 'PostController@getMostPopular'
+    ));
+
+Route::get('/post/browse/new',array(
+    'as'=>'post-browse-new','uses'=> 'PostController@getMostRecent'
     ));
 
 Route::get('/',array(

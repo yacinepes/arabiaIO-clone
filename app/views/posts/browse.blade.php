@@ -2,12 +2,13 @@
 @section('content')
 <!-- begin a partial: posts browse list  -->
 <div id="home" class="page_sidebar">
+    
 	<div id="content_nav">
 		<ul>
-			<li class="active"><a href="/">الأكثر شيوعاً</a></li>
-			<li><a href="/new">الأحدث</a></li>
+			<li class="{{Request::segment('3') == 'popular' ? 'active': false}}"><a href="{{route('post-browse-popular')}}">الأكثر شيوعاً</a></li>
+			<li class="{{Request::segment('3') == 'new' ? 'active': false}}"><a href="{{route('post-browse-new')}}">الأحدث</a></li>
 <!--			<li><a href="/discover">اكتشف!</a></li>-->
-			<li><a href="/top">الأفضل</a></li>
+			<li class="{{Request::segment('3') == 'top' ? 'active': false}}"><a href="{{route('post-browse-top')}}">الأفضل</a></li>
 <!--			<li><a href="/favorites">مفضّلتي</a></li>-->
 		</ul>
 <!--		<ul class="left">

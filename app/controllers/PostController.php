@@ -27,6 +27,22 @@ class PostController extends BaseController
         
     }
     
+    public function getTop()
+    {
+        $posts = $this->posts->findTop();
+        return View::make('posts.browse')
+                ->with(compact('posts'))
+                ->render();
+    }
+    
+    public function getMostRecent()
+    {
+        $posts = $this->posts->findMostRecent();
+        return View::make('posts.browse')
+                ->with(compact('posts'))
+                ->render();
+    }
+    
     public  function getMostPopular()
     {
         $posts = $this->posts->findMostPopular();

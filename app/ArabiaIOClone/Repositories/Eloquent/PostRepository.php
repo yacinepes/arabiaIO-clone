@@ -24,6 +24,26 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
         return $this->model->find($postId);
     }
     
+    public function findTop($perPage = 15)
+    {
+        return $this->model
+                    ->orderBy('sumvotes','desc')
+                    ->with('users')
+                    ->with('comments')
+                    ->with('communities')
+                    ->paginate($perPage);
+    }
+    
+    public function findMostRecent($perPage = 15 )
+    {
+        return $this->model
+                    ->orderBy('created_at','desc')
+                    ->with('users')
+                    ->with('comments')
+                    ->with('communities')
+                    ->paginate($perPage);
+    }
+    
     public function findMostPopular($perPage = 15)
     {
         return $this->model
