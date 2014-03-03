@@ -94,6 +94,16 @@ class PostController extends BaseController
         }
         
     }
+    
+    
+    public function getView($postId, $postSlug)
+    {
+        $post = $this->posts->findByIdAndSlug($postId,$postSlug);
+        
+        return View::make('posts.view')
+                ->with(compact('post'))
+                ->render();
+    }
 }
 
 ?>

@@ -32,6 +32,8 @@ class PostPresenter extends BasePresenter
                 ]);
     }
     
+    
+    
     public function getRouteToCommunity()
     {
         return route('community-view',array('communitySlug'=>$this->resource->community()->slug));

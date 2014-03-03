@@ -24,6 +24,8 @@ interface  PostRepositoryInterface
     
     public function findById($postId);
     
+    public function findByIdAndSlug($postId, $postSlug);
+    
     public function updateVoteSum($post);
 }
 

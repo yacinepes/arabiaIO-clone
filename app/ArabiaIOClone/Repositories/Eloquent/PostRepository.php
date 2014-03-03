@@ -24,6 +24,16 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
         return $this->model->find($postId);
     }
     
+    public function findByIdAndSlug($postId, $postSlug)
+    {
+        return $this->model->whereSlug($postSlug)
+                ->whereId($postId)
+                ->with('users')
+                ->with('votes')
+                ->with('comments')
+                ->first();
+    }
+    
     public function findTop($perPage = 15)
     {
         return $this->model
