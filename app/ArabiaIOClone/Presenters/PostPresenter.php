@@ -4,6 +4,7 @@ namespace ArabiaIOClone\Presenters;
 
 use McCool\LaravelAutoPresenter\BasePresenter;
 use \Post;
+use ArabiaIOClone\Helpers\ArabicDateDiffForHumans;
 
 /**
  * Description of PostPresenter
@@ -19,7 +20,7 @@ class PostPresenter extends BasePresenter
     
     public function getCreationDateDiffForHumans()
     {
-        return $this->resource->created_at->diffForHumans();
+        return ArabicDateDiffForHumans::translateFromEnglish($this->resource->created_at->diffForHumans());
     }
     
     public function getRouteToPost()
@@ -61,6 +62,8 @@ class PostPresenter extends BasePresenter
     {
         return 'post-'.$this->resource->id;
     }
+    
+    
 }
 
 ?>
