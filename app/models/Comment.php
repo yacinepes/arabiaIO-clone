@@ -15,6 +15,8 @@ class Comment extends Node {
   
   protected $fillable = array('content', 'user_id','post_id','sumvotes');
   
+  public $presenter = 'ArabiaIOClone\Presenters\CommentPresenter';
+  
   public function users() 
     {
         return $this->belongsTo('User','user_id');

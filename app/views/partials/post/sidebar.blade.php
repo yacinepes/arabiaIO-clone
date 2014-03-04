@@ -28,7 +28,12 @@
 	<div id="post_meta" class="widget sidebar_menu">
 		<ul>
 			<li><i class="fa fa-clock-o"></i>{{$post->getCreationDateDiffForHumans()}}</li>
-			<li><i class="fa fa-user"></i><a href="{{route('user-index',['username'=>$post->user()->username])}}"><span class="inblock username">{{ $post->user()->username }}</span><span class="inblock full_name">({{$post->user()->fullname}})</span></a></li>
+			<li><i class="fa fa-user"></i>
+                            <a href="{{route('user-index',['username'=>$post->user()->username])}}"><span class="inblock username">{{ $post->user()->username }}</span>
+                                @if($post->user()->fullname)
+                                <span class="inblock full_name">({{$post->user()->fullname}})</span>
+                                @endif
+                            </a></li>
 			<li><span class="block"><i class="icon-reorder"></i><a href="MISSING COMMUNITY ROUTE">{{$post->community()->name}}</a></span></li>
 			<!--<li id="fp-5153"><i class="icon-star"></i><a href="#" class="add_favorite ">أضف الى المفضّلة</a><a href="#" class="remove_favorite hidden">أزل من المفضّلة</a></li>-->
 <!--			<li><i class="icon-ban-circle"></i><a class="post_report_spam" href="#">أبلغ عن مخالفة</a></li>-->

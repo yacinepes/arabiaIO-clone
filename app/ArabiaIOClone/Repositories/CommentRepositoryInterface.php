@@ -11,6 +11,8 @@ interface CommentRepositoryInterface
     public function getPostSubmitForm();
     
     public function create($data,$parentId=null);
+    
+    public function getSortedByPost($post);
 }
 
 ?>

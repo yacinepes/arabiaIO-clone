@@ -70,5 +70,6 @@
 	<div class="clear">
 	</div>
 	<!-- begin comments  see post.singleview.comments-->
+        @include('partials.post.comment.listview')
 	<!-- end comment -->
 </div>

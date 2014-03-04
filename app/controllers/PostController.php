@@ -8,6 +8,7 @@
 
 use ArabiaIOClone\Repositories\CommunityRepositoryInterface;
 use ArabiaIOClone\Repositories\PostRepositoryInterface;
+use ArabiaIOClone\Repositories\CommentRepositoryInterface;
 
 
 class PostController extends BaseController
@@ -15,15 +16,18 @@ class PostController extends BaseController
     
     protected $communities;
     protected $posts;
+    protected $comments;
     
     public function __construct(
             CommunityRepositoryInterface $communities,
-            PostRepositoryInterface $posts
+            PostRepositoryInterface $posts,
+            CommentRepositoryInterface $comments
             ) 
     {
         //parent::__construct();
         $this->communities = $communities;
         $this->posts = $posts;
+        $this->comments = $comments;
         
     }
     
@@ -99,9 +103,13 @@ class PostController extends BaseController
     public function getView($postId, $postSlug)
     {
         $post = $this->posts->findByIdAndSlug($postId,$postSlug);
+        $comments = $this->comments->getSortedByPost($post);
+        
+        
         
         return View::make('posts.view')
                 ->with(compact('post'))
+                ->with(compact('comments'))
                 ->render();
     }
 }
