@@ -65,6 +65,18 @@ class PostPresenter extends BasePresenter
         return 'post-'.$this->resource->id;
     }
     
+    public function getPositiveVoteSum()
+    {
+        $result = $this->resource->votes()->where('vote','>',0)->sum('vote') ;
+        return $result == null ? 0: $result;
+    }
+    
+    public function getNegativeVoteSum()
+    {
+        $result = $this->resource->votes()->where('vote','<',0)->sum('vote');
+        return $result == null ? 0: $result;
+    }
+    
     
 }
 

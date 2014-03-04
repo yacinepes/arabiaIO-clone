@@ -30,7 +30,7 @@
 	<div class="clear">
 	</div>
 	<!--section post content -->
-	<div id="post-5148" class="post_content replace_urls">
+	<div id="post-{{$post->id}}" class="post_content replace_urls">
 	{{{$post->content}}}
 	</div>
 	<!--end section post content -->
@@ -39,17 +39,29 @@
 	</div>
 	<!-- partial add comment -->
 	<div id="add_comment">
-		<form action="/programming/5148-%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D9%84%D9%8A%D8%B3%D8%AA-%D9%84%D9%84%D8%AC%D9%85%D9%8A%D8%B9" method="post" class="comment_form">
-			<p>
-				<textarea id="comment_content" name="comment_content" class="largearea largearea_tall fullwidth"></textarea>
-			</p>
-			<div class="clear">
-			</div>
-			<input id="user_token" name="token" value="491d4440dfdc7a9d32d9f12ed9c42cf0e81ad1d8" type="hidden"><input name="comment_parent" value="" type="hidden">
-			<p>
-				<input class="largebutton" value="أضف التعليق" type="submit">
-			</p>
-		</form>
+            {{ Form::open(array(
+                'route'=>array('comment-submit',$post->id,null)
+                )) }}
+    
+                <p>
+                {{ Form::textarea('comment_content', null, array( 'id'=>'comment_content','class'=>'largearea largearea_tall fullwidth')) }}
+                </p>
+                <div class="clear"></div>
+                <p>
+                {{ Form::submit('أضف التعليق', array('class'=>'largebutton'))}}
+                </p>
+            {{ Form::close() }}
+<!--            <form action="/programming/5148-%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D9%84%D9%8A%D8%B3%D8%AA-%D9%84%D9%84%D8%AC%D9%85%D9%8A%D8%B9" method="post" class="comment_form">
+                <p>
+                    <textarea id="comment_content" name="comment_content" class="largearea largearea_tall fullwidth"></textarea>
+                </p>
+                <div class="clear">
+                </div>
+
+                <p>
+                        <input class="largebutton" value="أضف التعليق" type="submit">
+                </p>
+            </form>-->
 	</div>
 	<!-- end partial add comment -->
 	<div class="clear">

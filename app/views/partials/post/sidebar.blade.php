@@ -3,21 +3,21 @@
 	<div id="sidebar_post_votes" class="widget">
 		<div class="post_vote">
 			<div class="post_upvote">
-				<a id="post_upvote-5153" href="#" class="upvote_btn"><i class="fa fa-angle-up"></i></a>
+				<a id="post_upvote-{{$post->id}}" href="#" class="upvote_btn"><i class="fa fa-angle-up"></i></a>
 			</div>
 			<div class="post_points ltr">
 				{{$post->sumvotes}}
 			</div>
 			<div class="post_downvote">
-				<a id="post_downvote-5153" href="#" class="downvote_btn"><i class="fa fa-angle-down"></i></a>
+				<a id="post_downvote-{{$post->id}}" href="#" class="downvote_btn"><i class="fa fa-angle-down"></i></a>
 			</div>
 		</div>
 		<div id="sidebar_votes_count">
 			<div class="s_upvotes">
-				7 نقطة ايجابية
+				{{$post->getPositiveVoteSum()}} نقطة ايجابية
 			</div>
 			<div class="s_downvotes">
-				0 نقطة سلبية
+				{{$post->getNegativeVoteSum()}} نقطة سلبية
 			</div>
 		</div>
 	</div>
@@ -27,12 +27,12 @@
 	<!-- partial post meta -->
 	<div id="post_meta" class="widget sidebar_menu">
 		<ul>
-			<li><i class="icon-time"></i>{{$post->getCreationDateDiffForHumans()}}</li>
-			<li><i class="icon-user"></i><a href="{{route('user-index',['username',$post->user()->username])}}"><span class="inblock username">{{$post->user()->username}}</span><span class="inblock full_name">({{$post->user()->fullname}})</span></a></li>
-			<li><span class="block"><i class="icon-reorder"></i><a href="MISSING COMMUNITY ROUTE">التدوين وصناعة المحتوى</a></span></li>
-			<li id="fp-5153"><i class="icon-star"></i><a href="#" class="add_favorite ">أضف الى المفضّلة</a><a href="#" class="remove_favorite hidden">أزل من المفضّلة</a></li>
-			<li><i class="icon-ban-circle"></i><a class="post_report_spam" href="#">أبلغ عن مخالفة</a></li>
-			<li><a href="/topic/%D9%86%D8%B5%D8%A7%D8%A6%D8%AD" class="topic"><i class="icon-tag"></i> نصائح</a><a href="/topic/%D9%86%D8%B5%D9%8A%D8%AD%D8%A9" class="topic"><i class="icon-tag"></i> نصيحة</a><a href="/topic/%D9%86%D8%B5%D8%A7%D8%A6%D8%AD-%D8%AA%D9%82%D9%86%D9%8A%D8%A9" class="topic"><i class="icon-tag"></i> نصائح-تقنية</a></li>
+			<li><i class="fa fa-clock-o"></i>{{$post->getCreationDateDiffForHumans()}}</li>
+			<li><i class="fa fa-user"></i><a href="{{route('user-index',['username'=>$post->user()->username])}}"><span class="inblock username">{{ $post->user()->username }}</span><span class="inblock full_name">({{$post->user()->fullname}})</span></a></li>
+			<li><span class="block"><i class="icon-reorder"></i><a href="MISSING COMMUNITY ROUTE">{{$post->community()->name}}</a></span></li>
+			<!--<li id="fp-5153"><i class="icon-star"></i><a href="#" class="add_favorite ">أضف الى المفضّلة</a><a href="#" class="remove_favorite hidden">أزل من المفضّلة</a></li>-->
+<!--			<li><i class="icon-ban-circle"></i><a class="post_report_spam" href="#">أبلغ عن مخالفة</a></li>-->
+<!--			<li><a href="/topic/%D9%86%D8%B5%D8%A7%D8%A6%D8%AD" class="topic"><i class="icon-tag"></i> نصائح</a><a href="/topic/%D9%86%D8%B5%D9%8A%D8%AD%D8%A9" class="topic"><i class="icon-tag"></i> نصيحة</a><a href="/topic/%D9%86%D8%B5%D8%A7%D8%A6%D8%AD-%D8%AA%D9%82%D9%86%D9%8A%D8%A9" class="topic"><i class="icon-tag"></i> نصائح-تقنية</a></li>-->
 		</ul>
 	</div>
 	<!-- end partial post meta -->
@@ -40,7 +40,7 @@
 		<br>
 	</div>
 	<!-- partial post share button -->
-	<div id="share_post_btns" class="widget">
+	<!--<div id="share_post_btns" class="widget">
 		<h3>شارك الموضوع. شكراً!</h3>
 		<div class="tcenter">
 			<span st_processed="yes" class="st_facebook_vcount" st_url="https://arabia.io/go/5153" displaytext="Facebook"><span class="stButton" style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;">
@@ -72,15 +72,15 @@
 			</div>
 			</span></span>
 		</div>
-	</div>
+	</div>-->
 	<!-- end partial post share button -->
 	<div class="clear">
 	</div>
 	<!-- partial short link-->
-	<div id="short_link" class="widget">
+<!--	<div id="short_link" class="widget">
 		<input value="https://arabia.io/go/5153" class="short_url inputtext" readonly="readonly" type="text">
 	</div>
-	<!-- end partial short link-->
+	 end partial short link
 	<div class="clear">
-	</div>
+	</div>-->
 </div>

@@ -14,8 +14,9 @@
 
 Route::group(array('before' => 'csrf'), function(){
     
-    Route::post('post/{id}/upvote',['as'=>'post-upvote','uses'=>'VoteController@postUpvotePost']);
-    Route::post('post/{id}/downvote',['as'=>'post-down','uses'=>'VoteController@postDownvotePost']);
+    Route::post('/post/{id}/upvote',['as'=>'post-upvote','uses'=>'VoteController@postUpvotePost']);
+    Route::post('/post/{id}/downvote',['as'=>'post-down','uses'=>'VoteController@postDownvotePost']);
+    Route::post('/comment/submit/{postId}/{commentId?}',['as'=>'comment-submit','uses'=>'CommentController@postSubmit']);
 });
 
 

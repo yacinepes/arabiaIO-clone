@@ -34,6 +34,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'ArabiaIOClone\Repositories\VoteRepositoryInterface',
             'ArabiaIOClone\Repositories\Eloquent\VoteRepository'
         );
+         
+         $this->app->bind(
+            'ArabiaIOClone\Repositories\CommentRepositoryInterface',
+            'ArabiaIOClone\Repositories\Eloquent\CommentRepository'
+        );
     }
 }
 
