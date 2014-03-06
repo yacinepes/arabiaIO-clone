@@ -9,7 +9,7 @@ namespace ArabiaIOClone\Observers;
 use \Vote;
 use \ArabiaIOClone\Repositories\UserRepositoryInterface;
 use ArabiaIOClone\Repositories\PostRepositoryInterface;
-//use ArabiaIOClone\Repositories\CommentRepositoryInterface;
+use ArabiaIOClone\Repositories\CommentRepositoryInterface;
 
 class VoteObserver extends AbstractObserver
 {
@@ -19,14 +19,14 @@ class VoteObserver extends AbstractObserver
     
     public function __construct(
             UserRepositoryInterface $users,
-            //CommentRepositoryInterface $comments,    
+            CommentRepositoryInterface $comments,    
             PostRepositoryInterface $posts
             
             ) 
     {
         $this->users = $users;
         $this->posts = $posts;
-        //$this->comments = $comments;
+        $this->comments = $comments;
     }
     
     protected function updateUserReputation($vote)
@@ -42,7 +42,7 @@ class VoteObserver extends AbstractObserver
         {
             $this->posts->updateVoteSum($target);
         }elseif ($vote->target_type == 'Comment') {
-            //$this->comments->updateVoteSum($target);
+            $this->comments->updateVoteSum($target);
         }
         
     }

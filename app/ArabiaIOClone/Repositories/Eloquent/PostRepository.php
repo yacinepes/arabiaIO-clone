@@ -21,7 +21,7 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
     
     public function findById($postId)
     {
-        return $this->model->find($postId);
+        return $this->model->findOrFail($postId);
     }
     
     public function findByIdAndSlug($postId, $postSlug)

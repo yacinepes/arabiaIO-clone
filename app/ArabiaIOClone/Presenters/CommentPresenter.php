@@ -30,7 +30,7 @@ class CommentPresenter extends BasePresenter
     
     public function getCreationDateDiffForHumans()
     {
-        return ArabicDateDiffForHumans::translateFromEnglish($this->resource->updated_at->diffForHumans());
+        return ArabicDateDiffForHumans::translateFromEnglish($this->resource->created_at->diffForHumans());
     }
 }
 

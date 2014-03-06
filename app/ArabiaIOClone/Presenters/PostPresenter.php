@@ -47,7 +47,7 @@ class PostPresenter extends BasePresenter
             
             $url= "(".$url['host'].")";
         
-            $result = "<a href='$this->resource->link' rel='nofollow' target='_blank'>";
+            $result = "<a href='".$this->resource->link."' rel='nofollow' target='_blank'>";
             $result .= $this->resource->title;
             $result .= '</a>';
             $result .= "<span class='post_domain'>$url</span>";
@@ -75,6 +75,18 @@ class PostPresenter extends BasePresenter
     {
         $result = $this->resource->votes()->where('vote','<',0)->sum('vote');
         return $result == null ? 0: $result;
+    }
+	
+    public function getCommentsCountLiteral()
+    {
+            $commentsCount = $this->resource->comments()->count();
+            if ($commentsCount == 0)
+            {
+                    return "ابدأ النقاش";
+            }else
+            {
+                    return "عدد التعليقات ".$commentsCount;
+            }
     }
     
     

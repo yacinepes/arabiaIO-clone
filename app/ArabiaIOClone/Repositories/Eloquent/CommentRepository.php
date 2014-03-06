@@ -19,6 +19,12 @@ class CommentRepository extends AbstractRepository implements CommentRepositoryI
         $this->model =$comment;
     }
     
+    public function findById($commentId)
+    {
+        return Comment::findOrFail($commentId);
+        
+    }
+    
     public function getPostSubmitForm() 
     {
         return  app('ArabiaIOClone\Services\Forms\CommentSubmitForm');
@@ -84,6 +90,12 @@ class CommentRepository extends AbstractRepository implements CommentRepositoryI
             }   
         }
         return $result;
+    }
+    
+    public function updateVoteSum($comment)
+    {
+        $comment->sumvotes = $comment->votes()->sum('vote');
+        $comment->save();
     }
 }
 

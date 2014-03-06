@@ -109,8 +109,8 @@ $(document).ready(function () {
         var base_url = $("#base_url").val();
         var o = $(this).parent().parent().find(".comment_points");
         if (l) {
-            $.post(base_url + "/comment/" + m + "/upvote/", {
-                token: l
+            $.post(base_url + "/comment/" + m + "/upvote", {
+                _token: l
             }, function (p) {
                 if (typeof p.points != "undefined") {
                     o.text(p.points).fadeOut(200).fadeIn(200)
@@ -122,7 +122,7 @@ $(document).ready(function () {
 //                        button_text: "إغلاق",
 //                        action: "close"
 //                    })
-                      alert(o.msg);
+                      alert(p.msg);
                 }
             }, "json")
         } else {
@@ -142,8 +142,8 @@ $(document).ready(function () {
         var base_url = $("#base_url").val();
         var o = $(this).parent().parent().find(".comment_points");
         if (l) {
-            $.post(base_url+"/comment/" + m + "/downvote/", {
-                token: l
+            $.post(base_url+"/comment/" + m + "/downvote", {
+                _token: l
             }, function (p) {
                 if (typeof p.points != "undefined") {
                     o.text(p.points).fadeOut(200).fadeIn(200)
@@ -155,7 +155,7 @@ $(document).ready(function () {
 //                        button_text: "إغلاق",
 //                        action: "close"
 //                    })
-                      alert(o.msg);
+                      alert(p.msg);
                 }
             }, "json")
         } else {
@@ -167,7 +167,38 @@ $(document).ready(function () {
             })
         }
     });
+    
+    comment_reset_buttons = function (k) {
+        var l = $("#comment-" + k);
+        l.find(".comment_unedit_btn:first").addClass("hidden");
+        l.find(".comment_edit_btn:first").removeClass("hidden");
+        l.find(".comment_unreply_btn:first").addClass("hidden");
+        l.find(".comment_reply_btn:first").removeClass("hidden");
+        l.find(".comment_wrapper:first .comment_content").removeClass("hidden")
+    };
+    
+    $(".comment_reply_btn").live("click", function (l) {
+        l.preventDefault();
+        var m = $(this).parent().parent().parent().parent();
+        var k = m.attr("id").split("-")[1];
+        comment_reset_buttons(k);
+        $("#post_comments").find("form").remove();
+        $("#post_comments").find(".comment_unreply_btn").addClass("hidden");
+        $("#post_comments").find(".comment_reply_btn").removeClass("hidden");
+        $($("#add_comment").html()).insertAfter($("#comment-" + k).find(".comment_wrapper:first"));
+        m.find("input[name=parent_id]").val(k);
+        m.find("textarea[name=comment_content]").focus();
+        m.find(".comment_reply_btn:first").addClass("hidden");
+        m.find(".comment_unreply_btn:first").removeClass("hidden")
+    });
 
+    $(".comment_unreply_btn").live("click", function (l) {
+        l.preventDefault();
+        var m = $(this).parent().parent().parent().parent();
+        var k = m.attr("id").split("-")[1];
+        m.find("form").remove();
+        comment_reset_buttons(k)
+    });
     
     /*jQuery.fn.show_dialog = function () {
         $("#shadow_box").css("display", "inline");
@@ -870,28 +901,8 @@ $(document).ready(function () {
             }
         })
     }
-    comment_reset_buttons = function (k) {
-        var l = $("#comment-" + k);
-        l.find(".comment_unedit_btn:first").addClass("hidden");
-        l.find(".comment_edit_btn:first").removeClass("hidden");
-        l.find(".comment_unreply_btn:first").addClass("hidden");
-        l.find(".comment_reply_btn:first").removeClass("hidden");
-        l.find(".comment_wrapper:first .comment_content").removeClass("hidden")
-    };
-    $(".comment_reply_btn").live("click", function (l) {
-        l.preventDefault();
-        var m = $(this).parent().parent().parent().parent();
-        var k = m.attr("id").split("-")[1];
-        comment_reset_buttons(k);
-        $("#post_comments").find("form").remove();
-        $("#post_comments").find(".comment_unreply_btn").addClass("hidden");
-        $("#post_comments").find(".comment_reply_btn").removeClass("hidden");
-        $($("#add_comment").html()).insertAfter($("#comment-" + k).find(".comment_wrapper:first"));
-        m.find("input[name=comment_parent]").val(k);
-        m.find("textarea[name=comment_content]").focus();
-        m.find(".comment_reply_btn:first").addClass("hidden");
-        m.find(".comment_unreply_btn:first").removeClass("hidden")
-    });
+    
+    
     $(".comment_edit_btn").live("click", function (o) {
         o.preventDefault();
         var p = $(this).parent().parent().parent().parent();
@@ -920,13 +931,7 @@ $(document).ready(function () {
             p.find(".comment_unedit_btn:first").removeClass("hidden")
         }, "json")
     });
-    $(".comment_unreply_btn").live("click", function (l) {
-        l.preventDefault();
-        var m = $(this).parent().parent().parent().parent();
-        var k = m.attr("id").split("-")[1];
-        m.find("form").remove();
-        comment_reset_buttons(k)
-    });
+    
     $(".comment_unedit_btn").live("click", function (l) {
         l.preventDefault();
         var m = $(this).parent().parent().parent().parent();

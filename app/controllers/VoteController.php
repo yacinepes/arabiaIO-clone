@@ -8,6 +8,7 @@
 use ArabiaIOClone\Repositories\UserRepositoryInterface;
 use ArabiaIOClone\Repositories\PostRepositoryInterface;
 use ArabiaIOClone\Repositories\VoteRepositoryInterface;
+use ArabiaIOClone\Repositories\CommentRepositoryInterface;
 
 
 class VoteController  extends BaseController
@@ -20,7 +21,7 @@ class VoteController  extends BaseController
     public function __construct( 
             UserRepositoryInterface $users,
             PostRepositoryInterface $posts,
-            //CommentRepositoryInterface $comments
+            CommentRepositoryInterface $comments,
             VoteRepositoryInterface $votes
             
             )
@@ -32,11 +33,67 @@ class VoteController  extends BaseController
         $this->users = $users;
         $this->posts = $posts;
         $this->votes = $votes;
-        //$this->comments = $comments;
+        $this->comments = $comments;
     }
     
     
+    public function postUpvoteComment($commentId)
+    {
+        if (Request::ajax())
+        {
+            if(!Auth::check())
+            {
+                return Response::json(['msg'=>Lang::get('errors.vote_auth')]);
+            }
+            
+            $comment = $this->comments->findById($commentId);
+            
+            if($this->user->id == $comment->user()->id)
+            {
+                return Response::json(['msg'=>Lang::get('errors.vote_owner')]);
+            }
+            
+            if (Auth::user()->reputation < Config::get("user.enoughKarmaToVoteDown"))
+            {
+                return Response::json(['msg'=>Lang::get('errors.vote_not_enough_reputation')]);
+            }
+            
+            return Response::json(['points' => $this->votes->tryUpvoteComment($comment,$this->user)]);
+            
+            
+        }
+        
+        return App::abort(404);
+    }
     
+    public function postDownvoteComment($commentId)
+    {
+        if (Request::ajax())
+        {
+            if(!Auth::check())
+            {
+                return Response::json(['msg'=>Lang::get('errors.vote_auth')]);
+            }
+            
+            $comment = $this->comments->findById($commentId);
+            
+            if($this->user->id == $comment->user()->id)
+            {
+                return Response::json(['msg'=>Lang::get('errors.vote_owner')]);
+            }
+            
+            if (Auth::user()->reputation < Config::get("user.enoughKarmaToVoteDown"))
+            {
+                return Response::json(['msg'=>Lang::get('errors.vote_not_enough_reputation')]);
+            }
+            
+            return Response::json(['points' => $this->votes->tryDownvoteComment($comment,$this->user)]);
+            
+            
+        }
+        
+        return App::abort(404);
+    }
     
     
     public function postUpvotePost($postId)

@@ -24,7 +24,7 @@ class CommentController extends BaseController
         
     }
     
-    public function postSubmit($postId, $parentId=null)
+    public function postSubmit($postId)
     {
         if(!Auth::check())
         {
@@ -49,6 +49,7 @@ class CommentController extends BaseController
         }
         
         $data = $form->getInputData();
+        $parentId = $data['parent_id'];
         $data['user_id'] = Auth::user()->id;
         $data['post_id'] = $postId;
 

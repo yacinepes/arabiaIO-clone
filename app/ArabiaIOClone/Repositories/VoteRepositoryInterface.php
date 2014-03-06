@@ -18,6 +18,10 @@ interface VoteRepositoryInterface
     
 
     public function tryUpvotePost($post, $user);
+    public function tryDownvotePost($post, $user);
+    
+    public function tryUpvoteComment($comment, $user);
+    public function tryDownvoteComment($comment, $user);
 }
 
 ?>

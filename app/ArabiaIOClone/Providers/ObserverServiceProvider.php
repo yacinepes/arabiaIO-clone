@@ -18,6 +18,7 @@ class ObserverServiceProvider  extends ServiceProvider
     {
         Vote::observe(new VoteObserver(
                 app('ArabiaIOClone\Repositories\UserRepositoryInterface'),
+                app('ArabiaIOClone\Repositories\CommentRepositoryInterface'),
                 app('ArabiaIOClone\Repositories\PostRepositoryInterface')
                 ));
     }
