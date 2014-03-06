@@ -6,6 +6,8 @@ To see a running demo check out <http://www.scyware.com/arabiaioclone>!
 
 This project is build with the awsome laravel framework [Laravel 4](http://laravel.com/)
 
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BUUTZDNKCA6NQ)
+
 ## Purpose and Features
 
 This project has two main purposes:
