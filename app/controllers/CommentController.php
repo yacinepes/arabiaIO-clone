@@ -24,6 +24,42 @@ class CommentController extends BaseController
         
     }
     
+    public function postEdit($commentId)
+    {
+        if(!Auth::check())
+        {
+            return  Redirect::back()
+                    ->withInput()
+                    ->withErrors(array(Lang::get('errors.comment_auth')));
+        }
+        
+        $form = $this->comments->getPostSubmitForm();
+        if(!$form->isValid())
+        {
+            return Redirect::back()
+                    ->withInput()
+                    ->withErrors($form->getErrors());
+        }
+        
+        $data = $form->getInputData();
+        $comment = Comment::findOrFail($commentId);
+        $comment = $this->comments->edit($comment,$data);
+
+        if($comment)
+        {
+            return Redirect::back()
+                ->with('success',[Lang::get('success.comment_submit')]);
+        }else
+        {
+            return Redirect::back()
+                    ->withInput()
+                    ->withErrors(Lang::get('errors.comment_submit'));
+        }
+        
+        
+    }
+
+
     public function postSubmit($postId)
     {
         if(!Auth::check())

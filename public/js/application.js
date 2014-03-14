@@ -200,6 +200,63 @@ $(document).ready(function () {
         comment_reset_buttons(k)
     });
     
+    $(".comment_edit_btn").live("click", function (o) {
+        
+        o.preventDefault();
+        var base_url = $("#base_url").val();
+        var p = $(this).parent().parent().parent().parent();
+        var n = p.attr("id").split("-")[1];
+        
+        var k = $("#comment-" + n).find(".comment_wrapper:first .comment_content");
+        var l = $("#post_id").val();
+        var m = $("#user_token").val();
+        comment_reset_buttons(n);
+        $("#post_comments").find("form").remove();
+        $("#post_comments").find(".comment_unedit_btn").addClass("hidden");
+        $("#post_comments").find(".comment_edit_btn").removeClass("hidden");
+        k.addClass("hidden");
+        $($("#add_comment").html()).insertAfter(k);
+        p.find("form").attr("action", base_url+"/comment/edit/" + n );
+        p.find("form").addClass("live_comment_edit_form");
+        p.find("input[type=submit]").val(" تعديل التعليق ");
+        //p.find("input[name=comment_parent]").val(n);
+        /*if (q.comment_content) {
+            p.find("textarea[name=comment_content]").val(q.comment_content);
+            p.find("textarea[name=comment_content]").focus()
+        }*/
+        p.find("textarea[name=comment_content]").val(k.text());
+        p.find("textarea[name=comment_content]").focus()
+        p.find(".comment_edit_btn:first").addClass("hidden");
+        p.find(".comment_unedit_btn:first").removeClass("hidden")
+        /*$.post("/post/" + l + "/comment_content/" + n, {
+            token: m
+        }, function (q) {
+            $("#post_comments").find("form").remove();
+            $("#post_comments").find(".comment_unedit_btn").addClass("hidden");
+            $("#post_comments").find(".comment_edit_btn").removeClass("hidden");
+            k.addClass("hidden");
+            $($("#add_comment").html()).insertAfter(k);
+            p.find("form").attr("action", "/post/" + l + "/comment_edit/" + n);
+            p.find("form").addClass("live_comment_edit_form");
+            p.find("input[type=submit]").val(" تعديل التعليق ");
+            p.find("input[name=comment_parent]").val(n);
+            if (q.comment_content) {
+                p.find("textarea[name=comment_content]").val(q.comment_content);
+                p.find("textarea[name=comment_content]").focus()
+            }
+            p.find(".comment_edit_btn:first").addClass("hidden");
+            p.find(".comment_unedit_btn:first").removeClass("hidden")
+        }, "json")*/
+    });
+    
+    $(".comment_unedit_btn").live("click", function (l) {
+        l.preventDefault();
+        var m = $(this).parent().parent().parent().parent();
+        var k = m.attr("id").split("-")[1];
+        m.find("form").remove();
+        comment_reset_buttons(k)
+    });
+    
     /*jQuery.fn.show_dialog = function () {
         $("#shadow_box").css("display", "inline");
         this.css("display", "inline");
@@ -903,42 +960,7 @@ $(document).ready(function () {
     }
     
     
-    $(".comment_edit_btn").live("click", function (o) {
-        o.preventDefault();
-        var p = $(this).parent().parent().parent().parent();
-        var n = p.attr("id").split("-")[1];
-        var k = $("#comment-" + n).find(".comment_wrapper:first .comment_content");
-        var l = $("#post_id").val();
-        var m = $("#user_token").val();
-        comment_reset_buttons(n);
-        $.post("/post/" + l + "/comment_content/" + n, {
-            token: m
-        }, function (q) {
-            $("#post_comments").find("form").remove();
-            $("#post_comments").find(".comment_unedit_btn").addClass("hidden");
-            $("#post_comments").find(".comment_edit_btn").removeClass("hidden");
-            k.addClass("hidden");
-            $($("#add_comment").html()).insertAfter(k);
-            p.find("form").attr("action", "/post/" + l + "/comment_edit/" + n);
-            p.find("form").addClass("live_comment_edit_form");
-            p.find("input[type=submit]").val("تعديل التعليق");
-            p.find("input[name=comment_parent]").val(n);
-            if (q.comment_content) {
-                p.find("textarea[name=comment_content]").val(q.comment_content);
-                p.find("textarea[name=comment_content]").focus()
-            }
-            p.find(".comment_edit_btn:first").addClass("hidden");
-            p.find(".comment_unedit_btn:first").removeClass("hidden")
-        }, "json")
-    });
     
-    $(".comment_unedit_btn").live("click", function (l) {
-        l.preventDefault();
-        var m = $(this).parent().parent().parent().parent();
-        var k = m.attr("id").split("-")[1];
-        m.find("form").remove();
-        comment_reset_buttons(k)
-    });
     $(".live_comment_edit_form").live("submit", function (o) {
         o.preventDefault();
         var k = $(this).find("textarea[name=comment_content]").val();

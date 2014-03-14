@@ -5,6 +5,7 @@ namespace ArabiaIOClone\Presenters;
 use ArabiaIOClone\Helpers\ArabicDateDiffForHumans;
 use Comment;
 use McCool\LaravelAutoPresenter\BasePresenter;
+use \Auth;
 /**
  * Description of CommentPresenter
  *
@@ -31,6 +32,17 @@ class CommentPresenter extends BasePresenter
     public function getCreationDateDiffForHumans()
     {
         return ArabicDateDiffForHumans::translateFromEnglish($this->resource->created_at->diffForHumans());
+    }
+    
+    public function canEdit()
+    {
+        if($this->resource->user()->id == Auth::user()->id)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
     }
 }
 

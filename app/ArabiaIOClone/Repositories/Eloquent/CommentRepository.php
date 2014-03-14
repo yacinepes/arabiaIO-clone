@@ -30,11 +30,18 @@ class CommentRepository extends AbstractRepository implements CommentRepositoryI
         return  app('ArabiaIOClone\Services\Forms\CommentSubmitForm');
     }
     
+    public function edit($comment,$data)
+    {
+        $comment->content = e($data['comment_content']);
+        $comment->save();
+        return $comment;
+    }
+    
     public function create($data,$parentId=null)
     {
         
         $comment =  Comment::create(array(
-                'content' => $data['comment_content'],
+                'content' => e($data['comment_content']),
                 'user_id' => $data['user_id'],
                 'post_id' => $data['post_id']
                 

@@ -20,6 +20,7 @@ Route::group(array('before' => 'csrf'), function(){
     Route::post('/comment/submit/{postId}',['as'=>'comment-submit','uses'=>'CommentController@postSubmit']);
     Route::post('/comment/{id}/upvote',['as'=>'comment-upvote','uses'=>'VoteController@postUpvoteComment']);
     Route::post('/comment/{id}/downvote',['as'=>'comment-down','uses'=>'VoteController@postDownvoteComment']);
+    Route::post('/comment/edit/{commentId}',['as'=>'comment-edit','uses'=>'CommentController@postEdit']);
     
 });
 
