@@ -98,6 +98,14 @@ Route::get('/user/{username}',array(
     'as'=>'user-index','uses'=>'UserController@getIndex'
     ));
 
+Route::get('/user/{username}/posts',array(
+    'as'=>'user-posts','uses'=>'UserController@getPosts'
+    ));
+
+Route::get('/user/{username}/comments',array(
+    'as'=>'user-comments','uses'=>'UserController@getComments'
+    ));
+
 Route::get('/post/view/{postId}-{postSlug}',['as'=>'post-view','uses'=>'PostController@getView']);
 
 

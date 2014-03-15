@@ -20,7 +20,7 @@ class LoginForm extends AbstractForm
     protected $config;
     
     protected $rules = array(
-            'username' => 'required|alpha_dash',
+            'username' => 'required',
             'password' => 'required'
         );
     

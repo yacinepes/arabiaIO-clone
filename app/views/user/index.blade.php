@@ -1,0 +1,47 @@
+@extends('layouts.main')
+@section('title',$user->username)
+@section('content')
+
+<div id="user">
+	<div id="user_profile">
+		<div class="right_col">
+<!--			<img id="user_image" src="https://secure.gravatar.com/avatar/a677aa78851c756b324af91bf2a59695?s=240&amp;d=mm" height="120" width="120">-->
+			<h2 id="user_name">
+                            <a href="{{route('user-index',['username'=>$user->username])}}" title="{{$user->username}}">
+			<span class="inblock username">{{$user->username}}</span>
+			<span class="inblock full_name">{{$user->getFullName()}}</span>
+			</a>
+			</h2>
+			<p class="details">
+				{{$user->bio}}
+			</p>
+			<div class="clear">
+			</div>
+		</div>
+		<div class="left_col">
+			<p class="points">
+				<i class="icon-star"></i> نقاط السمعة: <span class="inblock ltr">{{$user->reputation}}</span>
+			</p>
+			<p class="created">
+				<i class="icon-calendar"></i> سجّل: {{$user->getCreationDateDiffForHumans()}}
+			</p>
+		</div>
+		<div class="clear">
+		</div>
+	</div>
+	<div id="content_nav">
+		<ul>
+			<li class="active"><a href="{{route('user-index',['username'=>$user->username])}}">مجتمعات أتابعها</a></li>
+			<li><a href="{{route('user-posts',['username'=>$user->username])}}">المساهمات</a></li>
+			<li><a href="{{route('user-comments',['username'=>$user->username])}}">التعليقات</a></li>
+<!--			<li><a href="/u/hichem/favorites">المفضّلة</a></li>-->
+<!--			<li><a href="/u/hichem/ask">اسألني!</a></li>-->
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	{{$lists}}
+</div>
+<input id="current_user_id" value="1202" type="hidden">
+
+@stop

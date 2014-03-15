@@ -5,7 +5,6 @@ namespace ArabiaIOClone\Presenters;
 use McCool\LaravelAutoPresenter\BasePresenter;
 use \Post;
 use ArabiaIOClone\Helpers\ArabicDateDiffForHumans;
-
 /**
  * Description of PostPresenter
  *

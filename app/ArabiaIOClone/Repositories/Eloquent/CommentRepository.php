@@ -32,6 +32,7 @@ class CommentRepository extends AbstractRepository implements CommentRepositoryI
     
     public function edit($comment,$data)
     {
+        
         $comment->content = e($data['comment_content']);
         $comment->save();
         return $comment;

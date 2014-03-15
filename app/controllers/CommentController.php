@@ -33,6 +33,8 @@ class CommentController extends BaseController
                     ->withErrors(array(Lang::get('errors.comment_auth')));
         }
         
+        
+        
         $form = $this->comments->getPostSubmitForm();
         if(!$form->isValid())
         {
@@ -41,8 +43,17 @@ class CommentController extends BaseController
                     ->withErrors($form->getErrors());
         }
         
+        $comment = $this->comments->findById($commentId);
+        
+        if(Auth::user()->id != $comment->user()->id)
+        {
+            return Redirect::back()
+                    ->withInput()
+                    ->withErrors(Lang::get('errors.comment_submit'));
+        }
+        
         $data = $form->getInputData();
-        $comment = Comment::findOrFail($commentId);
+        
         $comment = $this->comments->edit($comment,$data);
 
         if($comment)
