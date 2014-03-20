@@ -48,6 +48,6 @@
 	</div>
 	{{$lists}}
 </div>
-<input id="current_user_id" value="1202" type="hidden">
+<input id="current_user_id" value="{{$user->id}}" type="hidden">
 
 @stop

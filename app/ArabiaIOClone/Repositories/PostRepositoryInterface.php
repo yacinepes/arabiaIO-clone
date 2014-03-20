@@ -21,6 +21,7 @@ interface  PostRepositoryInterface
     
     public function findTop($perPage);
     
+    public function findByUser($user,$perPage = 15);
     
     public function findById($postId);
     

@@ -25,6 +25,16 @@ class CommentRepository extends AbstractRepository implements CommentRepositoryI
         
     }
     
+    public function findByUser($user,$perPage = 15)
+    {
+        return $this->model
+                ->where('user_id','=',$user->id)
+                ->orderBy('created_at','desc')
+                
+                ->paginate($perPage);
+                
+    }
+    
     public function getPostSubmitForm() 
     {
         return  app('ArabiaIOClone\Services\Forms\CommentSubmitForm');

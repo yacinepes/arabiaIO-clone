@@ -55,6 +55,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         return $this->model->whereUsername($username)->first();
     }
+    
+    
 }
 
 ?>

@@ -54,6 +54,18 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
                     ->paginate($perPage);
     }
     
+    public function findByUser($user,$perPage = 15)
+    {
+        return $this->model
+                ->where('user_id','=',$user->id)
+                ->orderBy('created_at','desc')
+                ->with('users')
+                ->with('comments')
+                ->with('communities')
+                ->paginate($perPage);
+                
+    }
+    
     public function findMostPopular($perPage = 15)
     {
         return $this->model

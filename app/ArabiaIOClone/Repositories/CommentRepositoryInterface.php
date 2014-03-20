@@ -17,6 +17,8 @@ interface CommentRepositoryInterface
     public function getSortedByPost($post);
     
     public function updateVoteSum($comment);
+    
+    public function findByUser($user,$perPage);
 }
 
 ?>
