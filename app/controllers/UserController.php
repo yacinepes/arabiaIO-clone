@@ -24,10 +24,48 @@ class UserController extends BaseController
         $this->users = $users;
     }
     
+    public function  getComments($username)
+    {
+        $user = $this->users->findByUsername($username);
+        if($user)
+        {
+            $isSelf = false;
+            if(Auth::check())
+            {
+                $isSelf = $this->user->id == $user->id;
+            }
+            
+            return View::make('user.index')
+                    ->nest('lists','partials.user.comments')
+                    ->with(compact('user'))
+                    ->with('isSelf',$isSelf);
+        } 
+        return App::abort(404);
+    }
+    
+    public function  getPosts($username)
+    {
+        $user = $this->users->findByUsername($username);
+        if($user)
+        {
+            $isSelf = false;
+            if(Auth::check())
+            {
+                $isSelf = $this->user->id == $user->id;
+            }
+            
+            return View::make('user.index')
+                    ->nest('lists','partials.user.posts')
+                    ->with(compact('user'))
+                    ->with('isSelf',$isSelf);
+        } 
+        return App::abort(404);
+    }
+
+
     public function getIndex($username)
     {
         $user = $this->users->findByUsername($username);
-        
         if($user)
         {
             $isSelf = false;
@@ -40,7 +78,6 @@ class UserController extends BaseController
                     ->nest('lists','partials.user.communities')
                     ->with(compact('user'))
                     ->with('isSelf',$isSelf);
-                    
         }
         
         return App::abort(404);

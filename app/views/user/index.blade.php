@@ -31,9 +31,15 @@
 	</div>
 	<div id="content_nav">
 		<ul>
-			<li class="active"><a href="{{route('user-index',['username'=>$user->username])}}">مجتمعات أتابعها</a></li>
-			<li><a href="{{route('user-posts',['username'=>$user->username])}}">المساهمات</a></li>
-			<li><a href="{{route('user-comments',['username'=>$user->username])}}">التعليقات</a></li>
+			<li class="{{Request::segment('3') == null ? 'active': false}}"><a href="{{route('user-index',['username'=>$user->username])}}">
+			@if($isSelf)
+			مجتمعات أتابعها
+			@else
+			مجتمعات يتابعها
+			@endif
+			</a></li>
+			<li  class="{{Request::segment('3') == 'posts' ? 'active': false}}"><a href="{{route('user-posts',['username'=>$user->username])}}">المساهمات</a></li>
+			<li  class="{{Request::segment('3') == 'comments' ? 'active': false}}"><a href="{{route('user-comments',['username'=>$user->username])}}">التعليقات</a></li>
 <!--			<li><a href="/u/hichem/favorites">المفضّلة</a></li>-->
 <!--			<li><a href="/u/hichem/ask">اسألني!</a></li>-->
 		</ul>

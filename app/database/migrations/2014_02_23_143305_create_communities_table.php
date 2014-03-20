@@ -21,6 +21,7 @@ class CreateCommunitiesTable extends Migration {
 	        $table->string('name')->unique();
                 $table->text('description')->nullable()->default(NULL);
                 $table->integer('creator_id')->unsigned();
+                $table->boolean('user_created')->default(false);
 	        $table->timestamps();
 	    });
 	}
