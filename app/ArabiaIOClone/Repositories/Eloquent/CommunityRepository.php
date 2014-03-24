@@ -28,6 +28,14 @@ class CommunityRepository extends AbstractRepository implements CommunityReposit
 
         return $communities;
     }
+    
+    public function findMostRecent($take = 8)
+    {
+        $communities = $this->model
+                           ->orderBy('created_at', 'desc')
+                           ->take($take)
+                           ->get();
+    }
 }
 
 ?>

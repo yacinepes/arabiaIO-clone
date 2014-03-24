@@ -12,6 +12,7 @@ namespace ArabiaIOClone\Repositories;
 interface UserRepositoryInterface 
 {
     public function getLoginForm();
+    public function getAccountCreateForm();
     
     public function updateReputation($user);
     
@@ -20,7 +21,7 @@ interface UserRepositoryInterface
 //    
 //    public function findByEmail($email);
 //    
-//    public function create(array $data);
+    public function create(array $data);
 }
 
 ?>

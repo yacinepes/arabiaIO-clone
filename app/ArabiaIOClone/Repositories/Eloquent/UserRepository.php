@@ -51,10 +51,26 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         return app('ArabiaIOClone\Services\Forms\LoginForm');
     }
     
+    public function getAccountCreateForm()
+    {
+        return app('ArabiaIOClone\Services\Forms\AccountCreateForm');
+    }
+    
     public function findByUsername($username)
     {
         return $this->model->whereUsername($username)->first();
     }
+    
+    public function create(array $data)
+    {
+        $user = User::create(array(
+            'email'=> e($data['email']),
+            'username' => e($data['username']),
+            'password' => Hash::make($data['password'])
+        ));
+        return $user;
+    }
+            
     
     
 }

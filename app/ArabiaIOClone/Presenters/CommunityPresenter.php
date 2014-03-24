@@ -23,6 +23,11 @@ class CommunityPresenter extends BasePresenter
         return $this->resource->name;
     }
     
+    public function getRouteToCommunity()
+    {
+        return route('community-view',array('communitySlug'=>$this->resource->slug));
+    }
+    
    
 }
 

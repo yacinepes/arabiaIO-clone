@@ -14,4 +14,11 @@
         @endforeach
     </div>
 @endif
+@if(Session::has('info'))
+    <div class="msg_box tcenter info">
+        @foreach(Session::get('info') as $info)
+        <li>{{$info}}</li>
+        @endforeach
+    </div>
+@endif
 

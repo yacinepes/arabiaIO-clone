@@ -15,7 +15,7 @@ class AccountController extends BaseController
     public function __construct(UserRepositoryInterface $users)
     {
         
-
+        
         $this->users = $users;
     }
     
@@ -25,9 +25,9 @@ class AccountController extends BaseController
         return Redirect::route('default');
     }
     
-    public function getLogin()
+    public function getIndex()
     {
-        return View::make('account.login');
+        return View::make('account.index');
     }
     
     public function postLogin()
@@ -77,7 +77,36 @@ class AccountController extends BaseController
         return Redirect::route('account-login')
                     ->withInput()
                     ->withErrors(Lang::get('errors.login_wrong_credentials'));
-
+    }
+    
+    public function postCreate()
+    {
+        
+                        
+        $accountCreateForm = $this->users->getAccountCreateForm();
+        if (!$accountCreateForm->isValid())
+        {
+            return  Redirect::route('account-index')
+                ->withInput()
+                ->withErrors($accountCreateForm->getErrors());
+        }else 
+        {
+            if($user = $this->users->create($accountCreateForm->getInputData()))
+            {
+                Mail::send('emails.auth.activateAccount', 
+                        array(  'link' => URL::route('account-activate',$user->code),
+                                'username'=>$user->username 
+                            ),
+                                function($message) use($user)
+                                {
+                                    $message->to($user->email,$user->username)
+                                    ->subject(Lang::get('reminders.activationEmailTitle'));
+                                }
+                            );
+                return Redirect::route('default')
+                    ->with('success',[Lang::get('success.account_register_email_sent')]);
+            }
+        }
         
     }
 

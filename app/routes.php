@@ -35,9 +35,7 @@ Route::group(array('before' => 'auth'), function(){
     
     Route::get('post/submit',['as'=>'post-submit','uses'=>'PostController@getSubmit']);
     
-    Route::get('account/logout',array(
-       'as'=>'account-logout',
-        'uses'=> 'AccountController@getLogout'
+    Route::get('account/logout',array('as'=>'account-logout','uses'=> 'AccountController@getLogout'
     ));
 });
 
@@ -46,14 +44,14 @@ Route::group(array('before' => 'guest'), function(){
     Route::group(array('before' => 'csrf'), function(){
         
         Route::post('/account/create',array(
-        'as' =>'account-create-post',
-        'uses' => 'AccountController@postCreate'
+            'as' =>'account-create',
+            'uses' => 'AccountController@postCreate'
         ));
         
-        Route::post('/account/login',array(
+        Route::post('/account/login',[
             'as'=>'account-login',
             'uses' => 'AccountController@postLogin'
-        ));
+        ]);
         
 //        Route::post('/account/forgot-password',array(
 //        'as' => 'account-forgot-password',
@@ -75,10 +73,10 @@ Route::group(array('before' => 'guest'), function(){
 //        'uses' => 'AccountController@getRecoverPassword'
 //    ));
     
-    Route::get('/account/login',array(
-        'as'=>'account-login',
-        'uses' => 'AccountController@getLogin'
-        ));
+    
+    Route::get('/account/login',['as'=>'account-login','uses' => 'AccountController@getIndex']);
+    Route::get('/account/register',['as'=>'account-register','uses' => 'AccountController@getIndex']);
+    Route::get('/account',['as'=>'account-index','uses' => 'AccountController@getIndex']);
     
 //    Route::get('/account/create',array(
 //        'as' =>'account-create',

@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration {
                 $table->integer('reputation',0);
                 $table->text('bio');
                 $table->boolean('active', false);
-	        $table->boolean('is_admin')->default(0);
+	        $table->boolean('is_admin', false);
                 $table->softDeletes();
 	        $table->timestamps();
 	    });
