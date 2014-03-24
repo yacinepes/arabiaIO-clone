@@ -14,5 +14,7 @@ return array(
     'comment_submit' => 'Error while creating comment. Please try again later!',
     'comment_not_enough_reputation' => 'you don\'t have enough reputation to comment',
     
+    'account_activated' => 'we could not activate your account, please try again later!'
+    
 );
 

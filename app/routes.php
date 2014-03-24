@@ -123,6 +123,11 @@ Route::get('/',array(
     'as'=>'default','uses'=> 'PostController@getDefault'
     ));
 
+Route::get('/account/activate/{code}',array(
+        'as' => 'account-activate',
+        'uses' => 'AccountController@getActivate'
+    ));
+
 
     
 

@@ -5,6 +5,7 @@
  */
 
 namespace ArabiaIOClone\Repositories\Eloquent;
+use Illuminate\Support\Facades\Hash;
 
 use ArabiaIOClone\Repositories\UserRepositoryInterface;
 use User;
@@ -61,12 +62,29 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         return $this->model->whereUsername($username)->first();
     }
     
+     public function findByActivationCode($code)
+     {
+         return $this->model
+                 ->where('code','=',$code)
+                 ->where('active','=',0)
+                 ->first();
+     }
+     
+    public function setActivated($user)
+    {
+        $user->active = 1;
+        $user->code = '';
+        return $user->save();
+    }
+    
     public function create(array $data)
     {
         $user = User::create(array(
             'email'=> e($data['email']),
             'username' => e($data['username']),
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
+            'code' => str_random(60),
+            'active' => 0
         ));
         return $user;
     }

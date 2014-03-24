@@ -79,6 +79,25 @@ class AccountController extends BaseController
                     ->withErrors(Lang::get('errors.login_wrong_credentials'));
     }
     
+    public function getActivate($code)
+    {
+        $user = $this->users->findByActivationCode($code);
+        if($user)
+        {
+            if($this->users->setActivated($user))
+            {
+                Auth::login($user);
+                return Redirect::route('user-index',$user->username)
+                        ->with('success',[Lang::get('success.account_activated')]);
+            }
+        }
+        
+        return Redirect::route('default')
+                        ->withErrors(Lang::get('errors.account_activated'));
+        
+        
+    }
+    
     public function postCreate()
     {
         

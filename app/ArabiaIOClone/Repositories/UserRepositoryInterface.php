@@ -18,10 +18,13 @@ interface UserRepositoryInterface
     
     public function findByUsername($username);
     
+    public function findByActivationCode($code);
+    
 //    
 //    public function findByEmail($email);
 //    
     public function create(array $data);
+    public function setActivated($user);
 }
 
 ?>
