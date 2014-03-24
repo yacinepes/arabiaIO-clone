@@ -18,6 +18,11 @@ class CommentPresenter extends BasePresenter
         $this->resource = $comment;
     }
     
+    public function content()
+    {
+        return nl2br($this->resource->content);
+    }
+    
     public function subcomment()
     {
         return $this->resource->getLevel() > 0 ? 'subcomment' : '';
@@ -44,6 +49,38 @@ class CommentPresenter extends BasePresenter
             return false;
         }
     }
+    
+    public function getLinkToComment()
+    {
+        return route('post-view',[
+            'postId'=>$this->resource->post_id,
+            'postSlug' => $this->resource->post()->slug
+                
+                ]).'#comment_'.$this->resource->id;
+    }
+    
+    public function getRouteToPost()
+    {
+        return route('post-view',[
+            'postId'=>$this->resource->post_id,
+            'postSlug' => $this->resource->post()->slug
+                
+                ]);
+    }
+    
+    public function getPostCommentsCountLiteral()
+    {
+        $commentsCount = $this->resource->post()->comments()->count();
+        if ($commentsCount == 0)
+        {
+                return "ابدأ النقاش";
+        }else
+        {
+                return "عدد التعليقات ".$commentsCount;
+        }
+    }
+    
+    
 }
 
 ?>

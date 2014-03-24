@@ -1,9 +1,9 @@
 <div id="comments">
-	{{throw 2do cretae the comment display partial}}
-</div>
-<div class="clear">
+@foreach($comments as $comment)
+    @include('partials.post.comment.listitem_userprofile',compact('comment'))
+@endforeach
 <br/>
 </div>
 <div id="more_content">
-        {{$posts->links()}}
+        {{$comments->links()}}
 </div>

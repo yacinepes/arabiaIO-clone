@@ -34,7 +34,7 @@
 		</div>
 		<div class="post_content comment_content replace_urls">
                     <p>
-			{{{$comment->content}}}
+			{{$comment->content}}
                         </p>
 		</div>
 		<div class="clear">

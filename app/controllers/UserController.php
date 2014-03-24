@@ -41,7 +41,7 @@ class UserController extends BaseController
             {
                 $isSelf = $this->user->id == $user->id;
             }
-            $comments = $this->comments->findByUser($user);
+            $comments = $this->comments->findByUserWithEagerLoading($user);
             return View::make('user.index')
                     ->with('lists',View::make('partials.user.comments')->with(compact('comments')))
                     ->with(compact('user'))

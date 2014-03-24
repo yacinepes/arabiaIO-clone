@@ -17,6 +17,11 @@ class PostPresenter extends BasePresenter
         $this->resource = $post;
     }
     
+    public function content()
+    {
+        return nl2br($this->resource->content);
+    }
+    
     public function getCreationDateDiffForHumans()
     {
         return ArabicDateDiffForHumans::translateFromEnglish($this->resource->created_at->diffForHumans());

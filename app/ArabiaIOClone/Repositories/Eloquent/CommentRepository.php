@@ -30,9 +30,18 @@ class CommentRepository extends AbstractRepository implements CommentRepositoryI
         return $this->model
                 ->where('user_id','=',$user->id)
                 ->orderBy('created_at','desc')
-                
-                ->paginate($perPage);
-                
+                ->paginate($perPage);     
+    }
+    
+    public function findByUserWithEagerLoading($user,$perPage = 15)
+    {
+        return $this->model
+                ->where('user_id','=',$user->id)
+                ->with('posts')
+                ->with('posts.communities')
+                ->with('users')
+                ->orderBy('created_at','desc')
+                ->paginate($perPage);   
     }
     
     public function getPostSubmitForm() 

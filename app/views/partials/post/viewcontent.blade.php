@@ -31,7 +31,7 @@
 	</div>
 	<!--section post content -->
 	<div id="post-{{$post->id}}" class="post_content replace_urls">
-	{{{$post->content}}}
+	{{$post->content}}
 	</div>
 	<!--end section post content -->
 	<div class="clear">

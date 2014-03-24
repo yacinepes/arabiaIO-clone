@@ -12,8 +12,8 @@
 			<span class="inblock full_name">{{$user->getFullName()}}</span>
 			</a>
 			</h2>
-			<p class="details">
-				{{$user->bio}}
+			<p>
+                            {{$user->bio}}
 			</p>
 			<div class="clear">
 			</div>
