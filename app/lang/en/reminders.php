@@ -22,5 +22,6 @@ return array(
 	"sent" => "Password reminder sent!",
     
         "activationEmailTitle" => "Activate your account",
+        "recoverPasswordEmailTitle" => "Password recovery",
 
 );

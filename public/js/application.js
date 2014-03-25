@@ -258,6 +258,18 @@ $(document).ready(function () {
         comment_reset_buttons(k)
     });
     
+    $("#password_btn").click(function (k) {
+        k.preventDefault();
+        $("#login_form_wrapper").addClass("hidden");
+        $("#password_form_wrapper").removeClass("hidden")
+    });
+    
+    $("#relogin_btn").click(function (k) {
+        k.preventDefault();
+        $("#password_form_wrapper").addClass("hidden");
+        $("#login_form_wrapper").removeClass("hidden")
+    });
+    
     /*jQuery.fn.show_dialog = function () {
         $("#shadow_box").css("display", "inline");
         this.css("display", "inline");
@@ -423,16 +435,8 @@ $(document).ready(function () {
             fixed_header()
         }
     });
-    $("#password_btn").click(function (k) {
-        k.preventDefault();
-        $("#login_form_wrapper").addClass("hidden");
-        $("#password_form_wrapper").removeClass("hidden")
-    });
-    $("#relogin_btn").click(function (k) {
-        k.preventDefault();
-        $("#password_form_wrapper").addClass("hidden");
-        $("#login_form_wrapper").removeClass("hidden")
-    });
+    
+    
     $("#invite_signup_form").submit(function () {
         var n = $("#invite_signup_form").find("input[name=username]");
         var m = $("#invite_signup_form").find("input[name=email_address]");

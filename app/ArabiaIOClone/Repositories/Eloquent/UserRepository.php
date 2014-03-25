@@ -57,9 +57,19 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         return app('ArabiaIOClone\Services\Forms\AccountCreateForm');
     }
     
+    public function getRecoverPasswordForm() 
+    {
+        return app('ArabiaIOClone\Services\Forms\RecoverPasswordForm');
+    }
+    
     public function findByUsername($username)
     {
         return $this->model->whereUsername($username)->first();
+    }
+    
+    public function findByEmail($email) 
+    {
+        return $this->model->whereEmail($email)->first();
     }
     
      public function findByActivationCode($code)
@@ -70,10 +80,35 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
                  ->first();
      }
      
+    public function findByActivationCodeAndTempPassword($code)
+    {
+        return $this->model->where('code','=',$code)
+                ->where('password_temp','!=','')
+                ->first();
+    }
+     
     public function setActivated($user)
     {
         $user->active = 1;
         $user->code = '';
+        return $user->save();
+    }
+    
+    public function setRecoverPasswordCompleteState($user) 
+    {
+        $user->password = $user->password_temp;
+        $user->password_temp = '';
+        $user->code = '';
+
+        return $user->save();
+    }
+    
+    public function setRecoverPasswordRequestState($user) 
+    {
+        $code = str_random(60);
+        $generatedPassword = str_random(10);
+        $user->code = $code;
+        $user->password_temp = Hash::make($generatedPassword);
         return $user->save();
     }
     

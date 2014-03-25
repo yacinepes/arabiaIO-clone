@@ -14,15 +14,16 @@
         </div>
         <div id="password_form_wrapper" class="hidden right">
                 <h3>استعادة كلمة المرور</h3>
-                <form id="password_form" action="/" method="post">
+                <form id="password_form" action="{{route('account-recover-password')}}" method="post">
                     <div id="password_form_inputs">
-                        <p><input name="email_address" class="inputtext" placeholder="بريدك الالكتروني" type="text"></p>
+                        <p><input name="email" class="inputtext" placeholder="بريدك الالكتروني" type="text"></p>
                         <p><a id="relogin_btn" href="#"><span class="smalltext">تسجيل دخول</span></a></p>
                         <div class="clear"></div>
                         
                     </div>
                     <p>
-                        
+                        <br><br>
                         <input value="أرسل" class="button" type="submit"></p>
+                    {{Form::token()}}
                 </form>
         </div>

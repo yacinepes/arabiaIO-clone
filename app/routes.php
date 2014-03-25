@@ -53,13 +53,25 @@ Route::group(array('before' => 'guest'), function(){
             'uses' => 'AccountController@postLogin'
         ]);
         
-//        Route::post('/account/forgot-password',array(
-//        'as' => 'account-forgot-password',
-//        'uses' => 'AccountController@postForgotPassword'
-//        ));
-//        
+        Route::post('/account/recover-password',array(
+        'as' => 'account-recover-password',
+        'uses' => 'AccountController@postRecoverPassword'
+        ));
+        
+        
+        
 
     });
+    
+    Route::get('/account/recover-password/{code}',array(
+    'as'=> 'account-recover-password',
+    'uses' => 'AccountController@getRecoverPassword'
+    ));
+    
+    Route::get('/account/activate/{code}',array(
+        'as' => 'account-activate',
+        'uses' => 'AccountController@getActivate'
+    ));
     
     
     
@@ -68,25 +80,17 @@ Route::group(array('before' => 'guest'), function(){
 //        'uses' => 'AccountController@getForgotPassword'
 //    ));
     
-//    Route::get('/account/recover-password/{code}',array(
-//        'as'=> 'account-recover-password',
-//        'uses' => 'AccountController@getRecoverPassword'
-//    ));
+
     
     
     Route::get('/account/login',['as'=>'account-login','uses' => 'AccountController@getIndex']);
     Route::get('/account/register',['as'=>'account-register','uses' => 'AccountController@getIndex']);
-    Route::get('/account',['as'=>'account-index','uses' => 'AccountController@getIndex']);
     
-//    Route::get('/account/create',array(
-//        'as' =>'account-create',
-//        'uses' => 'AccountController@getCreate'
-//    ));
     
-//    Route::get('/account/activate/{code}',array(
-//        'as' => 'account-activate',
-//        'uses' => 'AccountController@getActivate'
-//    ));
+    
+
+    
+
 
 });
 
@@ -123,10 +127,7 @@ Route::get('/',array(
     'as'=>'default','uses'=> 'PostController@getDefault'
     ));
 
-Route::get('/account/activate/{code}',array(
-        'as' => 'account-activate',
-        'uses' => 'AccountController@getActivate'
-    ));
+
 
 
     
