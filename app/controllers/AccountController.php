@@ -10,14 +10,9 @@ use ArabiaIOClone\Repositories\UserRepositoryInterface;
  */
 class AccountController extends BaseController
 {
-    protected $users;
     
-    public function __construct(UserRepositoryInterface $users)
-    {
-        
-        
-        $this->users = $users;
-    }
+    
+    
     
     public function getLogout()
     {

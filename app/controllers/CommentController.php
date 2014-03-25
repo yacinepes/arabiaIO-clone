@@ -10,19 +10,9 @@ use ArabiaIOClone\Repositories\CommentRepositoryInterface;
 
 class CommentController extends BaseController
 {
-    protected $comments;
-    protected $posts;
     
-    public function __construct(
-            CommentRepositoryInterface $comments,
-            PostRepositoryInterface $posts
-            ) 
-    {
-        //parent::__construct();
-        $this->comments = $comments;
-        $this->posts = $posts;
-        
-    }
+    
+    
     
     public function postEdit($commentId)
     {

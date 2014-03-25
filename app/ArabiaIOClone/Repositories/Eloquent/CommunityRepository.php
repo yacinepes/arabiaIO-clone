@@ -22,16 +22,16 @@ class CommunityRepository extends AbstractRepository implements CommunityReposit
     
     public function findAll($orderColumn = 'created_at', $orderDir='desc')
     {
-        $communities = $this->model
+        return  $this->model
                            ->orderBy($orderColumn, $orderDir)
                            ->get();
 
-        return $communities;
+        
     }
     
     public function findMostRecent($take = 8)
     {
-        $communities = $this->model
+        return $this->model
                            ->orderBy('created_at', 'desc')
                            ->take($take)
                            ->get();

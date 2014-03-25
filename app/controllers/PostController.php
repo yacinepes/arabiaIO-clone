@@ -14,22 +14,9 @@ use ArabiaIOClone\Repositories\CommentRepositoryInterface;
 class PostController extends BaseController
 {
     
-    protected $communities;
-    protected $posts;
-    protected $comments;
+   
     
-    public function __construct(
-            CommunityRepositoryInterface $communities,
-            PostRepositoryInterface $posts,
-            CommentRepositoryInterface $comments
-            ) 
-    {
-        //parent::__construct();
-        $this->communities = $communities;
-        $this->posts = $posts;
-        $this->comments = $comments;
-        
-    }
+    
     
     public function getTop()
     {

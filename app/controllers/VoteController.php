@@ -15,10 +15,7 @@ use Illuminate\Config\Repository;
 class VoteController  extends BaseController
 {
     
-    protected $users;
-    protected $posts;
-    protected $votes;
-    protected $config;
+   
     
     public function __construct( 
             UserRepositoryInterface $users,

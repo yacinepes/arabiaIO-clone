@@ -10,18 +10,11 @@ use ArabiaIOClone\Repositories\CommunityRepositoryInterface;
 
 class CommunityController extends BaseController
 {
-    protected $communities;
     
-    public function __construct(
-            CommunityRepositoryInterface $communities
-            ) 
-    {
-        //parent::__construct();
-        $this->communities = $communities;
-        
-    }
     
-    public function getBrowseNewest()
+   
+    
+    public function getBrowse()
     {
         $communitiesCollection = $this->communities->findAll();
         

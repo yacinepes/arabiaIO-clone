@@ -15,7 +15,7 @@ class UserController extends BaseController
      *
      * @var users repository
      */
-    protected $users;
+    
     
     public function __construct( UserRepositoryInterface $users,
                                  PostRepositoryInterface $posts,
