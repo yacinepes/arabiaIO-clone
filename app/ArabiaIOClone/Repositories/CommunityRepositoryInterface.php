@@ -14,6 +14,8 @@ interface CommunityRepositoryInterface
     public function findAll($orderColumn = 'created_at', $orderDir='desc');
     
     public function findMostRecent($take=8);
+    
+    public function findBySlug($slug);
 }
 
 ?>

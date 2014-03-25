@@ -21,13 +21,18 @@ interface  PostRepositoryInterface
     
     public function findTop($perPage);
     
-    public function findByUser($user,$perPage = 15);
+    public function findByUser($user,$perPage);
     
     public function findById($postId);
     
     public function findByIdAndSlug($postId, $postSlug);
     
     public function updateVoteSum($post);
+    
+    //by community
+    public function findTopByCommunity($community, $perPage );
+    public function findMostRecentByCommunity($community, $perPage );
+    public function findMostPopularByCommunity($perPage);
 }
 
 ?>

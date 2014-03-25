@@ -34,6 +34,17 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
                 ->first();
     }
     
+    public function findTopByCommunity($community, $perPage = 15)
+    {
+        return $this->model
+                    ->where('community_id','=',$community->id)
+                    ->orderBy('sumvotes','desc')
+                    ->with('users')
+                    ->with('comments')
+                    ->with('communities')
+                    ->paginate($perPage);
+    }
+    
     public function findTop($perPage = 15)
     {
         return $this->model
@@ -42,6 +53,17 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
                     ->with('comments')
                     ->with('communities')
                     ->paginate($perPage);
+    }
+    
+    public function findMostRecentByCommunity($community, $perPage = 15 )
+    {
+        return $this->model
+                ->where('community_id','=',$community->id)
+                ->orderBy('created_at','desc')
+                ->with('users')
+                ->with('comments')
+                ->with('communities')
+                ->paginate($perPage);
     }
     
     public function findMostRecent($perPage = 15 )
@@ -64,6 +86,17 @@ class PostRepository extends AbstractRepository implements PostRepositoryInterfa
                 ->with('communities')
                 ->paginate($perPage);
                 
+    }
+    
+    public function findMostPopularByCommunity($community, $perPage = 15)
+    {
+        return $this->model
+                ->where('community_id','=',$community->id)
+                ->orderByRaw('(sumvotes) / POW(((UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(created_at))/3600)+2, 1.8) DESC')
+                ->with('users')
+                ->with('comments')
+                ->with('communities')
+                ->paginate($perPage);
     }
     
     public function findMostPopular($perPage = 15)

@@ -4,7 +4,9 @@
 <div id="home" class="page_sidebar">
     
 	<div id="content_nav">
-          
+           
+            <h2 id="nav_title"><a href="/content" title="التدوين وصناعة المحتوى">التدوين وصناعة المحتوى</a></h2>
+            
 		<ul>
 			<li class="{{Request::segment('3') == 'popular' ? 'active': false}}"><a href="{{route('post-browse-popular')}}">الأكثر شيوعاً</a></li>
 			<li class="{{Request::segment('3') == 'new' ? 'active': false}}"><a href="{{route('post-browse-new')}}">الأحدث</a></li>

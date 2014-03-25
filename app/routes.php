@@ -94,7 +94,7 @@ Route::group(array('before' => 'guest'), function(){
 
 });
 
-Route::get('/community/{communitySlug}',['as'=>'community-view','uses'=>'CommunityController@getView']);
+Route::get('/community/{communitySlug}',['as'=>'community-view','uses'=>'CommunityController@getViewCommunity']);
 Route::get('/communities/browse',['as'=>'communities-browse','uses'=>'CommunityController@getBrowse']);
 
 Route::get('/user/{username}',array(

@@ -20,6 +20,14 @@ class CommunityRepository extends AbstractRepository implements CommunityReposit
         
     }
     
+    public function findBySlug($slug) 
+    {
+        return $this->model
+                ->whereSlug($slug)
+                ->first();
+        
+    }
+    
     public function findAll($orderColumn = 'created_at', $orderDir='desc')
     {
         return  $this->model

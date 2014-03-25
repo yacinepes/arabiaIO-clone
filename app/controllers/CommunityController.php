@@ -12,7 +12,18 @@ class CommunityController extends BaseController
 {
     
     
-   
+   public function getViewCommunity($communitySlug)
+   {
+       $community = $this->communities->findBySlug($communitySlug);
+       
+       if($community)
+       {
+           $posts = $this->posts->findMostPopularByCommunity($community);
+           return View::make('communities.view')
+                   ->with(compact('community','posts'));
+       }
+       
+   }
     
     public function getBrowse()
     {
