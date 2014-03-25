@@ -9,6 +9,7 @@ use ArabiaIOClone\Repositories\UserRepositoryInterface;
 use ArabiaIOClone\Repositories\PostRepositoryInterface;
 use ArabiaIOClone\Repositories\VoteRepositoryInterface;
 use ArabiaIOClone\Repositories\CommentRepositoryInterface;
+use Illuminate\Config\Repository;
 
 
 class VoteController  extends BaseController
@@ -17,12 +18,14 @@ class VoteController  extends BaseController
     protected $users;
     protected $posts;
     protected $votes;
+    protected $config;
     
     public function __construct( 
             UserRepositoryInterface $users,
             PostRepositoryInterface $posts,
             CommentRepositoryInterface $comments,
-            VoteRepositoryInterface $votes
+            VoteRepositoryInterface $votes,
+            Repository $config
             
             )
     {
@@ -34,6 +37,7 @@ class VoteController  extends BaseController
         $this->posts = $posts;
         $this->votes = $votes;
         $this->comments = $comments;
+        $this->config = $config;
     }
     
     
@@ -53,10 +57,10 @@ class VoteController  extends BaseController
                 return Response::json(['msg'=>Lang::get('errors.vote_owner')]);
             }
             
-            if (Auth::user()->reputation < Config::get("user.enoughKarmaToVoteDown"))
-            {
-                return Response::json(['msg'=>Lang::get('errors.vote_not_enough_reputation')]);
-            }
+//            if (Auth::user()->reputation < Config::get("user.enoughKarmaToVoteDown"))
+//            {
+//                return Response::json(['msg'=>Lang::get('errors.vote_not_enough_reputation')]);
+//            }
             
             return Response::json(['points' => $this->votes->tryUpvoteComment($comment,$this->user)]);
             
@@ -82,7 +86,7 @@ class VoteController  extends BaseController
                 return Response::json(['msg'=>Lang::get('errors.vote_owner')]);
             }
             
-            if (Auth::user()->reputation < Config::get("user.enoughKarmaToVoteDown"))
+            if (Auth::user()->reputation < $this->config->get('config.user.enoughKarmaToVoteDown'))
             {
                 return Response::json(['msg'=>Lang::get('errors.vote_not_enough_reputation')]);
             }
@@ -112,10 +116,10 @@ class VoteController  extends BaseController
                 return Response::json(['msg'=>Lang::get('errors.vote_owner')]);
             }
             
-            if (Auth::user()->reputation < Config::get("user.enoughKarmaToVoteDown"))
-            {
-                return Response::json(['msg'=>Lang::get('errors.vote_not_enough_reputation')]);
-            }
+//            if (Auth::user()->reputation < Config::get("user.enoughKarmaToVoteDown"))
+//            {
+//                return Response::json(['msg'=>Lang::get('errors.vote_not_enough_reputation')]);
+//            }
             
             return Response::json(['points' => $this->votes->tryUpvotePost($post,$this->user)]);
             
@@ -141,7 +145,7 @@ class VoteController  extends BaseController
                 return Response::json(['msg'=>Lang::get('errors.vote_owner')]);
             }
             
-            if (Auth::user()->reputation < Config::get("user.enoughKarmaToVoteDown"))
+            if (Auth::user()->reputation < $this->config->get('config.user.enoughKarmaToVoteDown'))
             {
                 return Response::json(['msg'=>Lang::get('errors.vote_not_enough_reputation')]);
             }
