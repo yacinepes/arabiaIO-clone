@@ -11,24 +11,12 @@ use ArabiaIOClone\Repositories\CommentRepositoryInterface ;
 
 class UserController extends BaseController 
 {
-    /**
-     *
-     * @var users repository
-     */
+  
     
-    
-    public function __construct( UserRepositoryInterface $users,
-                                 PostRepositoryInterface $posts,
-                                 CommentRepositoryInterface $comments
-            )
+    protected function __init()
     {
-        //parent::__construct();
-
+        parent::__init();
         $this->user = Auth::user();
-        
-        $this->users = $users;
-        $this->posts = $posts;
-        $this->comments = $comments;
     }
     
     public function  getComments($username)

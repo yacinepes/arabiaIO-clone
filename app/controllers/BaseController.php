@@ -28,10 +28,16 @@ class BaseController extends Controller {
         $this->users = $users;
         $this->votes = $votes;
         
-        $navLinks = $this->communities->findMostRecent();
-        View::share(compact('navLinks'));
+        $this->__init();
         
                 
+    }
+    
+    
+    protected function __init()
+    {
+        $navLinks = $this->communities->findMostRecent();
+        View::share(compact('navLinks'));
     }
 
 

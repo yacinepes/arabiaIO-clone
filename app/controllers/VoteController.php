@@ -9,32 +9,16 @@ use ArabiaIOClone\Repositories\UserRepositoryInterface;
 use ArabiaIOClone\Repositories\PostRepositoryInterface;
 use ArabiaIOClone\Repositories\VoteRepositoryInterface;
 use ArabiaIOClone\Repositories\CommentRepositoryInterface;
-use Illuminate\Config\Repository;
+
 
 
 class VoteController  extends BaseController
 {
     
-   
-    
-    public function __construct( 
-            UserRepositoryInterface $users,
-            PostRepositoryInterface $posts,
-            CommentRepositoryInterface $comments,
-            VoteRepositoryInterface $votes,
-            Repository $config
-            
-            )
+    protected function __init()
     {
-        
-
+        parent::__init();
         $this->user = Auth::user();
-        
-        $this->users = $users;
-        $this->posts = $posts;
-        $this->votes = $votes;
-        $this->comments = $comments;
-        $this->config = $config;
     }
     
     
