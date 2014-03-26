@@ -110,6 +110,7 @@ return array(
 		'Baum\BaumServiceProvider',
                 'ArabiaIOClone\Providers\RepositoryServiceProvider',
                 'ArabiaIOClone\Providers\ObserverServiceProvider',
+                'ArabiaIOClone\Providers\NotificationPresenterServiceProvider'
                 
 
 	),

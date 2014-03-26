@@ -68,6 +68,11 @@ class CommentPresenter extends BasePresenter
                 ]);
     }
     
+    public function getRouteToCommunity()
+    {
+        return route('community-view',array('communitySlug'=>$this->resource->post()->community()->slug));
+    }
+    
     public function getPostCommentsCountLiteral()
     {
         $commentsCount = $this->resource->post()->comments()->count();

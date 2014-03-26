@@ -6,7 +6,7 @@
 	<div id="content_nav">
           
 		<ul>
-			<li class="{{Request::segment('3') == 'popular' ? 'active': false}}"><a href="{{route('post-browse-popular')}}">الأكثر شيوعاً</a></li>
+			<li class="{{Request::segment('3') == 'popular' || Request::segment('3') == null ? 'active': false}}"><a href="{{route('post-browse-popular')}}">الأكثر شيوعاً</a></li>
 			<li class="{{Request::segment('3') == 'new' ? 'active': false}}"><a href="{{route('post-browse-new')}}">الأحدث</a></li>
 <!--			<li><a href="/discover">اكتشف!</a></li>-->
 			<li class="{{Request::segment('3') == 'top' ? 'active': false}}"><a href="{{route('post-browse-top')}}">الأفضل</a></li>
