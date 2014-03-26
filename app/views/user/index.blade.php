@@ -42,6 +42,10 @@
 			<li  class="{{Request::segment('3') == 'comments' ? 'active': false}}"><a href="{{route('user-comments',['username'=>$user->username])}}">التعليقات</a></li>
 <!--			<li><a href="/u/hichem/favorites">المفضّلة</a></li>-->
 <!--			<li><a href="/u/hichem/ask">اسألني!</a></li>-->
+                        
+                        @if($isSelf)
+                        <li class="{{Request::segment('3') == 'settings' ? 'active': false}}"><a href="{{route('user-settings',['username'=>$user->username])}}">الملف الشخصي</a></li>
+                        @endif
 		</ul>
 		<div class="clear">
 		</div>

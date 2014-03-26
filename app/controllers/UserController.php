@@ -60,7 +60,24 @@ class UserController extends BaseController
         return App::abort(404);
     }
 
-
+    public function getUserSettings($username)
+    {
+        if($this->user)
+        {
+            $user = $this->users->findByUsername($username);
+            if ($user->id == $this->user->id)
+            {
+                $isSelf = true;
+                return View::make('user.index')
+                    ->with('lists',View::make('partials.user.settings')->with(compact('user')))
+                    ->with(compact('user','isSelf'));
+                    
+            }
+        }
+        
+        return App::abort(404);
+    }
+    
     public function getIndex($username)
     {
         $user = $this->users->findByUsername($username);
@@ -81,6 +98,8 @@ class UserController extends BaseController
         return App::abort(404);
         
     }
+    
+    
 }
 
 ?>
