@@ -22,7 +22,30 @@ class CommunityController extends BaseController
            return View::make('communities.view')
                    ->with(compact('community','posts'));
        }
+   }
+   
+   public function getViewCommunityRecent($communitySlug)
+   {
+       $community = $this->communities->findBySlug($communitySlug);
        
+       if($community)
+       {
+           $posts = $this->posts->findMostRecentByCommunity($community);
+           return View::make('communities.view')
+                   ->with(compact('community','posts'));
+       }
+   }
+   
+   public function getViewCommunityTop($communitySlug)
+   {
+       $community = $this->communities->findBySlug($communitySlug);
+       
+       if($community)
+       {
+           $posts = $this->posts->findTopByCommunity($community);
+           return View::make('communities.view')
+                   ->with(compact('community','posts'));
+       }
    }
     
     public function getBrowse()
