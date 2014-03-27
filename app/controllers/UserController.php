@@ -59,6 +59,40 @@ class UserController extends BaseController
         } 
         return App::abort(404);
     }
+    
+    public function postUserSettings($username)
+    {
+        $editSettingsForm = $this->users->getAccountEditSettingsForm();
+        if (!$editSettingsForm->isValid())
+        {
+            return  Redirect::back()
+                    ->withInput()
+                    ->withErrors($editSettingsForm->getErrors());
+        }
+        if($this->user)
+        {
+            $user = $this->users->findByUsername($username);
+            if ($user->id == $this->user->id)
+            {
+                $isSelf = true;
+                $data = $editSettingsForm->getInputData();
+                if ($this->users->updateSettings($user,$data))
+                {
+                    $user = $this->users->findByUsername($username);
+                    return View::make('user.index')
+                        ->with('lists',View::make('partials.user.settings')->with(compact('user')))
+                        ->with(compact('user','isSelf'));
+                }else
+                {
+                    return  Redirect::back()
+                            ->withInput()
+                            ->withErrors([Lang::get('errors.user_update_settings')]);
+                }
+                
+            }
+        }
+        return App::abort(404);
+    }
 
     public function getUserSettings($username)
     {

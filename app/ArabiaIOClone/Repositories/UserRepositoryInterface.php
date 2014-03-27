@@ -20,6 +20,8 @@ interface UserRepositoryInterface
     
     public function updateReputation($user);
     
+    public function updateSettings($user, array $data);
+    
     public function findByUsername($username);
     public function findByEmail($email);
     public function findByActivationCode($code);

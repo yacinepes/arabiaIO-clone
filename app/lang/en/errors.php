@@ -17,7 +17,7 @@ return array(
     'account_activated' => 'we could not activate your account, please try again later!',
     'account_email_notfound' => 'The email cannot be foudn in our database',
     'account_recover_password' => 'Could not recover your password, please try again later',
-    
+    'user_update_settings' => 'Could not update your settings, please try again later',
     
 );
 

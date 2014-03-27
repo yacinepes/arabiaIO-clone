@@ -25,11 +25,13 @@ Route::group(array('before' => 'csrf'), function(){
 });
 
 
+
 Route::group(array('before' => 'auth'), function(){
     
     Route::group(array('before' => 'csrf'), function(){
         
         Route::post('post/submit',['as'=>'post-submit','uses'=>'PostController@postSubmit']);
+        Route::post('/user/{username}/settings',['as'=>'user-settings','uses'=>'UserController@postUserSettings']);
         
     });
     

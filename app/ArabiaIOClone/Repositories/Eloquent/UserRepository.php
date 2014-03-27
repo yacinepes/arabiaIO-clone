@@ -47,6 +47,26 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         
     }
     
+    public function updateSettings($user, array $data)
+    {
+        
+        $user->fullname = trim($data['fullname']) ;
+        $user->email = $data['email'] != '' ? trim($data['email']) : $user->email;
+        $user->bio = $data['bio'] != '' ? $data['bio'] : $user->bio;
+        if(array_key_exists('oldPassword',$data) && array_key_exists('newPassword',$data))
+        {
+            $oldPassword = trim($data['oldPassword']);
+            $newPassword = trim($data['newPassword']);
+            if(Hash::check($oldPassword,$user->getAuthPassword()))
+            {
+                $user->password = Hash::make($newPassword);
+            }
+        }
+        
+        return $user->save();
+        
+    }
+    
     public function getLoginForm()
     {
         return app('ArabiaIOClone\Services\Forms\LoginForm');
@@ -55,6 +75,11 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     public function getAccountCreateForm()
     {
         return app('ArabiaIOClone\Services\Forms\AccountCreateForm');
+    }
+    
+    public function getAccountEditSettingsForm()
+    {
+        return app('ArabiaIOClone\Services\Forms\AccountEditSettingsForm');
     }
     
     public function getRecoverPasswordForm() 
