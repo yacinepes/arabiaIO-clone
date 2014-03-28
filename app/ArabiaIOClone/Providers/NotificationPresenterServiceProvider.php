@@ -21,5 +21,7 @@ class NotificationPresenterServiceProvider extends ServiceProvider
                 'ArabiaIOClone.Notification.CommentOnPost',
                 'ArabiaIOClone\Presenters\Notifications\CommentOnPostNotificationPresenter'
                 );
+        
+       
     }
 }

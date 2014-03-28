@@ -39,6 +39,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'ArabiaIOClone\Repositories\CommentRepositoryInterface',
             'ArabiaIOClone\Repositories\Eloquent\CommentRepository'
         );
+         
+         $this->app->bind(
+            'ArabiaIOClone\Repositories\NotificationRepositoryInterface',
+            'ArabiaIOClone\Repositories\Eloquent\NotificationRepository'
+        );
     }
 }
 

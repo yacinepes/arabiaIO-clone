@@ -2,9 +2,11 @@
 
 namespace ArabiaIOClone\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use \Vote;
+use ArabiaIOClone\Observers\CommentObserver;
 use ArabiaIOClone\Observers\VoteObserver;
+use Comment;
+use Illuminate\Support\ServiceProvider;
+use Vote;
 
 /**
  * Description of ObserverServiceProvider
@@ -20,6 +22,13 @@ class ObserverServiceProvider  extends ServiceProvider
                 app('ArabiaIOClone\Repositories\UserRepositoryInterface'),
                 app('ArabiaIOClone\Repositories\CommentRepositoryInterface'),
                 app('ArabiaIOClone\Repositories\PostRepositoryInterface')
+                ));
+        
+        Comment::observe(new CommentObserver(
+                app('ArabiaIOClone\Repositories\UserRepositoryInterface'),
+                app('ArabiaIOClone\Repositories\CommentRepositoryInterface'),
+                app('ArabiaIOClone\Repositories\PostRepositoryInterface'),
+                app('ArabiaIOClone\Repositories\NotificationRepositoryInterface')
                 ));
     }
     

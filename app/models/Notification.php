@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Notification
  *
@@ -13,9 +7,23 @@
  */
 class Notification extends Eloquent
 {
+    protected $table = 'notifications';
     public $presenter = 'ArabiaIOClone\Presenters\Notifications\NotificationPresenterProxy';
+    protected $fillable = array('user_id',
+                                'event_type', 
+                                'read',
+                                'properties'
+                                );
     
-    public $event_type = "CommentOnPost";
+    public function users() 
+    {
+        return $this->belongsTo('User','user_id');
+    }
     
-    public $label = "Hello";
+    public function user()
+    {
+        return $this->users()->get()->first();
+    }
+    
+    
 }

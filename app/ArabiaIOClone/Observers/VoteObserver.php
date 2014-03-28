@@ -29,13 +29,13 @@ class VoteObserver extends AbstractObserver
         $this->comments = $comments;
     }
     
-    protected function updateUserReputation($vote)
+    protected function updateUserReputation( $vote)
     {
         $user = $vote->target()->first()->user();
         $this->users->updateReputation($user);
     }
     
-    protected function updateTargetVoteSum($vote)
+    protected function updateTargetVoteSum( $vote)
     {
         $target = $vote->target()->first();
         if($vote->target_type == 'Post')
