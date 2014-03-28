@@ -35,29 +35,7 @@ class CommentObserver extends AbstractObserver
         $this->notifications = $notifications;
     }
     
-    public function createCommentOnPostNotification(Comment $comment)
-    {
-        $data = ['user_id'=>$comment->post()->user()->id,
-                'event_type' => 'CommentOnPost',
-                'properties' => Response::json([
-                    'user_id'=> $comment->user_id,
-                    'post_id' => $comment->post_id
-                ])
-            ];
-        $this->notifications->create($data);
-    }
     
-    public function createCommentOnCommentNotification(Comment $comment)
-    {
-        $data = ['user_id'=>$comment->parent()->get()->post()->user()->id,
-                'event_type' => 'CommentOnComment',
-                'properties' => Response::json([
-                    'user_id'=> $comment->user_id,
-                    'comment_id' => $comment->parent()->get()->id
-                ])
-            ];
-        $this->notifications->create($data);
-    }
     
     public function created($comment) 
     {
@@ -65,10 +43,10 @@ class CommentObserver extends AbstractObserver
         
         if($comment->isRoot())
         {
-            $this->createCommentOnPostNotification($comment);
+            $this->notifications->createCommentOnPostNotification($comment);
         }else if($comment->isChild())
         {
-            $this->createCommentOnCommentNotification($comment);
+            $this->notifications->createCommentOnCommentNotification($comment);
         }
         
 

@@ -15,12 +15,14 @@ class NotificationPresenterProxy extends BasePresenter
 {
     public $presenter = null;
     
+    
     public function __construct(Notification $resource)
     {
         //parent::__construct($resource);
         
         $this->resource =  App('ArabiaIOClone.Notification.'.$resource->event_type,$resource);
         
-        
     }
+    
+    
 }
