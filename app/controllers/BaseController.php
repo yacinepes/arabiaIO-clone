@@ -5,6 +5,7 @@ use ArabiaIOClone\Repositories\CommunityRepositoryInterface;
 use ArabiaIOClone\Repositories\PostRepositoryInterface;
 use ArabiaIOClone\Repositories\UserRepositoryInterface;
 use ArabiaIOClone\Repositories\VoteRepositoryInterface;
+use ArabiaIOClone\Repositories\NotificationRepositoryInterface;
 
 class BaseController extends Controller {
 
@@ -13,13 +14,15 @@ class BaseController extends Controller {
     protected $posts;
     protected $users;
     protected $votes;
+    protected $notifications;
     
     public function __construct(
             CommunityRepositoryInterface $communities,
             CommentRepositoryInterface $comments,
             PostRepositoryInterface $posts,
             UserRepositoryInterface $users,
-            VoteRepositoryInterface $votes
+            VoteRepositoryInterface $votes,
+            NotificationRepositoryInterface $notifications
                                 ) 
     {
         $this->communities = $communities;
@@ -27,7 +30,7 @@ class BaseController extends Controller {
         $this->posts = $posts;
         $this->users = $users;
         $this->votes = $votes;
-        
+        $this->notifications = $notifications;
         $this->__init();
         
                 

@@ -40,6 +40,8 @@ Route::group(array('before' => 'auth'), function(){
     Route::get('account/logout',array('as'=>'account-logout','uses'=> 'AccountController@getLogout'));
     
     Route::get('user/{username}/settings',['as'=>'user-settings','uses'=>'UserController@getUserSettings']);
+    
+    Route::get('notifications',['as'=>'notifications-browse','uses'=>'NotificationController@getBrowse']);
 });
 
 Route::group(array('before' => 'guest'), function(){

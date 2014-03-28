@@ -12,8 +12,10 @@ namespace ArabiaIOClone\Repositories;
 
 interface NotificationRepositoryInterface 
 {
+    public function findByUser($user, $perPage);
+    
     public function create(array $data);
-    public function createCommentOnCommentNotification(Comment $comment);
-    public function createCommentOnPostNotification(Comment $comment);
+    public function createCommentOnCommentNotification( $comment);
+    public function createCommentOnPostNotification($comment);
     
 }

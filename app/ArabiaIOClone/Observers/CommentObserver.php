@@ -11,7 +11,6 @@ use ArabiaIOClone\Repositories\CommentRepositoryInterface;
 use ArabiaIOClone\Repositories\NotificationRepositoryInterface;
 use ArabiaIOClone\Repositories\PostRepositoryInterface;
 use ArabiaIOClone\Repositories\UserRepositoryInterface;
-use Comment;
 
 
 class CommentObserver extends AbstractObserver 
@@ -43,10 +42,18 @@ class CommentObserver extends AbstractObserver
         
         if($comment->isRoot())
         {
-            $this->notifications->createCommentOnPostNotification($comment);
+            if ($comment->user_id != $comment->post()->user_id)
+            {
+                $this->notifications->createCommentOnPostNotification($comment);
+            }
+            
         }else if($comment->isChild())
         {
-            $this->notifications->createCommentOnCommentNotification($comment);
+            if($comment->user_id != $comment->parent()->get()->user_id)
+            {
+                $this->notifications->createCommentOnCommentNotification($comment);
+            }
+            
         }
         
 

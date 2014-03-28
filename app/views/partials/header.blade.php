@@ -14,9 +14,11 @@
                 <!--<img id="user_image" src="https://secure.gravatar.com/avatar/a677aa78851c756b324af91bf2a59695?s=52&d=mm" width="26" height="26" />-->
             	<i class="fa fa-user"></i>
             </a>
-            <!-- <a id="notifications_btn" href="/notifications"  data-dropdown="#dropdown-notifications" title="التنبيهات">
+            @if(Auth::check())
+             <a id="notifications_btn" href="{{route('notifications-browse')}}"   title="التنبيهات">
             	<i class="fa fa-flag"></i>
-            </a> -->
+            </a> 
+            @endif
                 @if(Auth::check())
            	<a id="add_btn" href="{{route('post-submit')}}"   title="أضف مساهمة جديدة">
            		<i class="fa fa-plus-square"></i>
