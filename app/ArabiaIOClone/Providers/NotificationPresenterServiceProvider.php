@@ -22,6 +22,11 @@ class NotificationPresenterServiceProvider extends ServiceProvider
                 'ArabiaIOClone\Presenters\Notifications\CommentOnPostNotificationPresenter'
                 );
         
+        $this->app->bind(
+                'ArabiaIOClone.Notification.CommentOnComment',
+                'ArabiaIOClone\Presenters\Notifications\CommentOnCommentNotificationPresenter'
+                );
+        
        
     }
 }

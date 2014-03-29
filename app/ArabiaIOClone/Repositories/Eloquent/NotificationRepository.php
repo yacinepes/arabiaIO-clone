@@ -51,7 +51,10 @@ class NotificationRepository extends AbstractRepository implements NotificationR
                 'event_type' => 'CommentOnComment',
                 'properties' => json_encode([
                     'username'=> $comment->user()->username,
-                    'comment_id' => $comment->parent()->get()->id
+                    'comment_id' => $comment->parent()->get()->id,
+                    'post_id' => $comment->post_id,
+                    'post_slug' => $comment->post()->slug,
+                    'post_title' => $comment->post()->title
                 ])
             ];
         $this->create($data);

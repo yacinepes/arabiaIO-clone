@@ -40,23 +40,33 @@ class CommentObserver extends AbstractObserver
     {
         parent::created($comment);
         
-        if($comment->isRoot())
-        {
-            if ($comment->user_id != $comment->post()->user_id)
-            {
-                $this->notifications->createCommentOnPostNotification($comment);
-            }
+        
             
-        }else if($comment->isChild())
+        if ($comment->user_id != $comment->post()->user_id)
         {
+            $this->notifications->createCommentOnPostNotification($comment);
+        }
+            
+        
+        
+
+    }
+    
+    public  function saved($comment)
+    {
+        parent::saved($comment);
+        
+        
+        //
+        if($comment->isChild())
+        {
+            throw new Exception("ischild");
             if($comment->user_id != $comment->parent()->get()->user_id)
             {
                 $this->notifications->createCommentOnCommentNotification($comment);
             }
             
         }
-        
-
     }
             
             
