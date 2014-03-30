@@ -11,6 +11,9 @@ use ArabiaIOClone\Repositories\CommentRepositoryInterface;
 use ArabiaIOClone\Repositories\NotificationRepositoryInterface;
 use ArabiaIOClone\Repositories\PostRepositoryInterface;
 use ArabiaIOClone\Repositories\UserRepositoryInterface;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Log;
+
 
 
 class CommentObserver extends AbstractObserver 
@@ -32,9 +35,23 @@ class CommentObserver extends AbstractObserver
         $this->posts = $posts;
         $this->comments = $comments;
         $this->notifications = $notifications;
+        
+        Event::listen('eloquent.moved*', function($node){
+            $this->moved($node);
+        });
+        
     }
     
-    
+    public function moved($comment)
+    {
+        
+        if($comment->user_id != $comment->parent()->get()->first()->user_id)
+        {
+            $this->notifications->createCommentOnCommentNotification($comment);
+        }
+            
+        
+    }
     
     public function created($comment) 
     {
@@ -47,26 +64,19 @@ class CommentObserver extends AbstractObserver
             $this->notifications->createCommentOnPostNotification($comment);
         }
             
-        
+        return $comment;
         
 
     }
+    
+    
     
     public  function saved($comment)
     {
         parent::saved($comment);
         
         
-        //
-        if($comment->isChild())
-        {
-            throw new Exception("ischild");
-            if($comment->user_id != $comment->parent()->get()->user_id)
-            {
-                $this->notifications->createCommentOnCommentNotification($comment);
-            }
-            
-        }
+        
     }
             
             
