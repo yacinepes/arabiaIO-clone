@@ -102,6 +102,8 @@ Route::group(array('before' => 'guest'), function(){
 Route::get('/community/{communitySlug}',['as'=>'community-view','uses'=>'CommunityController@getViewCommunity']);
 Route::get('/community/{communitySlug}/top',['as'=>'community-view-top','uses'=>'CommunityController@getViewCommunityTop']);
 Route::get('/community/{communitySlug}/new',['as'=>'community-view-new','uses'=>'CommunityController@getViewCommunityRecent']);
+Route::get('/communities/browse/recent',['as'=>'communities-browse-recent','uses'=>'CommunityController@getMostRecent']);
+Route::get('/communities/browse/active',['as'=>'communities-browse-active','uses'=>'CommunityController@getMostActive']);
 Route::get('/communities/browse',['as'=>'communities-browse','uses'=>'CommunityController@getBrowse']);
 
 Route::get('/user/{username}',array(

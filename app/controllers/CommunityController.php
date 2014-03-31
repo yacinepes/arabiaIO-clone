@@ -50,9 +50,21 @@ class CommunityController extends BaseController
     
     public function getBrowse()
     {
-        $communitiesCollection = $this->communities->findAll();
+        $lists = $this->communities->findAll();
         
-        return var_dump($communitiesCollection);
+        return View::make('communities.index');
+    }
+    
+    public function getMostActive()
+    {
+        $lists = $this->communities->findAll();
+        return View::make('communities.index');
+    }
+    
+    public function getMostRecent()
+    {
+        $lists = $this->communities->findAll();
+        return View::make('communities.index');
     }
 }
 
