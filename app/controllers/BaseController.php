@@ -40,7 +40,13 @@ class BaseController extends Controller {
     protected function __init()
     {
         $navLinks = $this->communities->findMostRecent();
-        View::share(compact('navLinks'));
+        $notificationsCount = 0;
+        if (Auth::check())
+        {
+            $notificationsCount = $this->notifications->findUnreadNotificationsCount(Auth::user());
+        }
+        
+        View::share(compact('navLinks','notificationsCount'));
     }
 
 

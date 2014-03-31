@@ -1,7 +1,7 @@
 <div id="header">
     <div class="inside">
         <div id="logo" class="right">
-            <h1><a href="/"><img src="{{asset('/images/arabiaio.png')}}" alt="Arabia I/O" /></a></h1>
+            <h1><a href="{{route('default')}}"><img src="{{asset('/images/arabiaio.png')}}" alt="Arabia I/O" /></a></h1>
         </div>
         <div id="user_nav" class="left">
         	<a id="user_btn" 
@@ -16,7 +16,11 @@
             </a>
             @if(Auth::check())
              <a id="notifications_btn" href="{{route('notifications-browse')}}"   title="التنبيهات">
-            	<i class="fa fa-flag"></i>
+                 <i class="fa fa-flag">
+                     @if($notificationsCount > 0)
+                     <span class="upper_count">{{$notificationsCount}}</span>
+                     @endif
+                 </i>
             </a> 
             @endif
                 @if(Auth::check())

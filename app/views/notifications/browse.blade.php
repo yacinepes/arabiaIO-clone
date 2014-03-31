@@ -8,7 +8,10 @@
     <div id="page_content">
         <ul id="notifications_list" class="table_ul">
             @foreach($notifications as $notification)
-            <li id="notification-7991" class="notification ">{{$notification->getHTML()}}
+            <li id="notification-{{$notification->id}}" class="notification ">
+                @if(!$notification->read) <b> @endif
+                {{$notification->getHTML()}}
+                @if(!$notification->read) </b> @endif
             </li>
             @endforeach
         </ul>

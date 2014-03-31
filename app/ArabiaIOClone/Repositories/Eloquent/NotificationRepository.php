@@ -26,10 +26,29 @@ class NotificationRepository extends AbstractRepository implements NotificationR
     public function findByUser($user, $perPage)
     {
         return $this->model->where('user_id','=',$user->id)
+                ->orderBy('created_at','desc')
                 ->paginate($perPage);
                 
     }
     
+    public function updateRead($notification, $value)
+    {
+        if ($notification->read != $value) 
+        {
+            $notification->read = $value;
+            return $notification->save();
+        }
+        
+    }
+    
+    public function findUnreadNotificationsCount($user) 
+    {
+        return $this->model->where('user_id','=',$user->id)
+                ->where('read','=',0)
+                ->count();
+    }
+
+
     public function createCommentOnPostNotification( $comment)
     {
         $data = ['user_id'=>$comment->post()->user()->id,
