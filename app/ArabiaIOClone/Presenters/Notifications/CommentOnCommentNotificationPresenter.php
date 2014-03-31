@@ -1,8 +1,12 @@
 <?php
 
+
+namespace ArabiaIOClone\Presenters\Notifications;
+
+use ArabiaIOClone\Helpers\ArabicDateDiffForHumans;
 use ArabiaIOClone\Presenters\Notifications\NotificationPresenterInterface;
 use McCool\LaravelAutoPresenter\BasePresenter;
-
+use Notification;
 /**
  * Description of CommentOnCommentNotificationPresenter
  *
@@ -23,7 +27,8 @@ class CommentOnCommentNotificationPresenter extends BasePresenter implements Not
     
     public function getHTML() 
     {
-        return '<a href="/u/thamood'.
+        $this->properties = json_decode($this->resource->properties);
+        return '<a href="'.
                 route('user-index',['username'=> $this->properties->username]).
                 '">'.
                 $this->properties->username.
@@ -31,7 +36,8 @@ class CommentOnCommentNotificationPresenter extends BasePresenter implements Not
                 route('post-view',['postId'=>$this->properties->post_id,'postSlug' => $this->properties->post_slug]).'#comment_'.$this->properties->comment_id.
                 '">'.
                 $this->properties->post_title.
-                '</a>';
+                '</a>'.
+                ArabicDateDiffForHumans::translateFromEnglish($this->resource->created_at->diffForHumans());;
     }    
 }
 

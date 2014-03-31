@@ -36,49 +36,35 @@ class CommentObserver extends AbstractObserver
         $this->comments = $comments;
         $this->notifications = $notifications;
         
-        Event::listen('eloquent.moved*', function($node){
-            $this->moved($node);
+        if(!Event::hasListeners('ArabiaIO.Events.CommentOnComment'))
+        Event::listen('ArabiaIO.Events.CommentOnComment', function($comment){
+            $this->commentOnCommentHandler($comment);
         });
+        
+        if(!Event::hasListeners('ArabiaIO.Events.CommentOnPost'))
+        Event::listen('ArabiaIO.Events.CommentOnPost', function($comment){
+            $this->commentOnPostHandler($comment);
+        });
+        
         
     }
     
-    public function moved($comment)
+    public function commentOnCommentHandler($comment)
     {
         
         if($comment->user_id != $comment->parent()->get()->first()->user_id)
         {
             $this->notifications->createCommentOnCommentNotification($comment);
         }
-            
-        
     }
     
-    public function created($comment) 
-    {
-        parent::created($comment);
+    public function commentOnPostHandler($comment) 
+    {   
         
         
-            
         if ($comment->user_id != $comment->post()->user_id)
         {
             $this->notifications->createCommentOnPostNotification($comment);
         }
-            
-        return $comment;
-        
-
-    }
-    
-    
-    
-    public  function saved($comment)
-    {
-        parent::saved($comment);
-        
-        
-        
-    }
-            
-            
-          
+    }          
 }

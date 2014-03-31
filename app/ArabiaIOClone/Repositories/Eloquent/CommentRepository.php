@@ -4,7 +4,10 @@ namespace ArabiaIOClone\Repositories\Eloquent;
 
 use ArabiaIOClone\Repositories\CommentRepositoryInterface;
 use ArabiaIOClone\Repositories\Eloquent\AbstractRepository;
-use \Comment;
+use Comment;
+
+use Illuminate\Support\Facades\Event;
+
 
 /**
  * Description of CommentRepository
@@ -13,10 +16,13 @@ use \Comment;
  */
 class CommentRepository extends AbstractRepository implements CommentRepositoryInterface 
 {
+    
+    
     public function __construct(Comment $comment) 
     {
         parent::__construct($comment);
         $this->model =$comment;
+        
     }
     
     public function findById($commentId)
@@ -70,6 +76,13 @@ class CommentRepository extends AbstractRepository implements CommentRepositoryI
         {
             $parentComment = Comment::find($parentId);
             $comment->makeChildOf($parentComment);
+            Event::fire('ArabiaIO.Events.CommentOnComment',[$comment]);
+            
+        }else
+        {
+            
+            Event::fire('ArabiaIO.Events.CommentOnPost',[$comment]);
+            
         }
         
         return $comment;
