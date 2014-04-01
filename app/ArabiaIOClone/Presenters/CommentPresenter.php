@@ -21,7 +21,10 @@ class CommentPresenter extends BasePresenter
     public function content()
     {
         return nl2br($this->resource->content);
+        
     }
+    
+    
     
     public function subcomment()
     {

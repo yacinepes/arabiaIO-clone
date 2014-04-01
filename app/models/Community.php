@@ -23,6 +23,11 @@ class Community extends Eloquent
     {
         return $this->hasMany('Post','community_id');
     }
+    
+    public function subscribers()
+    {
+        return $this->belongsToMany('User');
+    }
 }
 
 ?>

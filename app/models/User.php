@@ -50,6 +50,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         {
             return $this->hasMany('Vote','user_id');
         }
+        
+        public function communities()
+        {
+            return $this->belongsToMany('Community');
+        }
 
         /**
 	 * Get the unique identifier for the user.
