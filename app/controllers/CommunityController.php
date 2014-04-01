@@ -11,6 +11,21 @@ use ArabiaIOClone\Repositories\CommunityRepositoryInterface;
 class CommunityController extends BaseController
 {
     
+   public function postSubscribe($id)
+   {
+       $community = $this->communities->findById($id);
+       $user = Auth::user();
+       $this->users->subscribeToCommunity($user, $community);
+       return Response::json(['success'=>true]);
+   }
+   
+   public function postUnsubscribe($id)
+   {
+       $community = $this->communities->findById($id);
+       $user = Auth::user();
+       $this->users->unsubscribeToCommunity($user, $community);
+       return Response::json(['success'=>true]);
+   }
     
    public function getViewCommunity($communitySlug)
    {

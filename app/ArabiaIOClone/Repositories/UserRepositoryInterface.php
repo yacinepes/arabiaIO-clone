@@ -36,6 +36,9 @@ interface UserRepositoryInterface
     public function setActivated($user);
     public function setRecoverPasswordRequestState($user);
     public function setRecoverPasswordCompleteState($user);
+    
+    public function subscribeToCommunity($user,$community);
+    public function unsubscribeToCommunity($user,$community);
 }
 
 ?>

@@ -7,9 +7,12 @@
     <span class="date"><i class="fa fa-clock-o"></i>{{$community->getLastActivityDiffForHumans()}}</span>
     @if(Auth::check())
     <span class="actions">
-        <a href="#" id="category-{{$community->slug}}" class="category_follow_btn ">
+        <a href="#" id="category-{{$community->id}}" class="category_follow_btn {{$community->getCanSubscribe(Auth::user())}}">
             <i class="fa fa-thumbs-up"></i> تابع المجتمع</a>
-        <a href="#" id="category-{{$community->slug}}" class="category_unfollow_btn hidden">الغاء المتابعة</a>
+        <a href="#" id="category-{{$community->id}}" class="category_unfollow_btn {{$community->getCanUnsubscribe(Auth::user())}}">
+            <i class="fa fa-thumbs-down"></i>
+            الغاء المتابعة
+        </a>
     </span>
     @endif
 </li>

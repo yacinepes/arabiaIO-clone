@@ -54,6 +54,16 @@ class CommunityPresenter extends BasePresenter
         
     }
     
+    public function getCanSubscribe($user)
+    {
+        return $this->resource->subscribers()->where('user_id','=',$user->id)->count() > 0 ? 'hidden' : null ;
+    }
+    
+    public function getCanUnsubscribe($user)
+    {
+        return $this->getCanSubscribe($user) == null ? 'hidden' : null;
+    }
+    
    
 }
 

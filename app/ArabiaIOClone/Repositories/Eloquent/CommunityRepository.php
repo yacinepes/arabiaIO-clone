@@ -30,6 +30,11 @@ class CommunityRepository extends AbstractRepository implements CommunityReposit
         
     }
     
+    public function findById($id)
+    {
+        return $this->model->find($id);
+    }
+    
     public function findAll($orderColumn = 'created_at', $orderDir='desc')
     {
         return  $this->model

@@ -23,6 +23,16 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         $this->model = $user;
     }
     
+    public function subscribeToCommunity($user,$community)
+    {
+        return $user->communities()->attach($community->id);
+    }
+    
+    public function unsubscribeToCommunity($user, $community)
+    {
+        return $user->communities()->detach($community->id);
+    }
+    
     public function updateReputation($user)
     {
         //$user = $this->model->find($userId);

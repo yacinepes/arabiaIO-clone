@@ -11,6 +11,7 @@ namespace ArabiaIOClone\Repositories;
 
 interface CommunityRepositoryInterface  
 {
+    public function findById($id);
     public function findAll($orderColumn = 'created_at', $orderDir='desc');
     
     public function findMostRecent($take=8);
@@ -20,6 +21,8 @@ interface CommunityRepositoryInterface
     public function findByUserPaginated($user, $perPage);
     public function findMostRecentPaginated($perPage);
     public function findMostActivePaginated($perPage);
+    
+    
 }
 
 ?>

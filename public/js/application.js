@@ -277,8 +277,8 @@ $(document).ready(function () {
         var l = $(this).parent();
         var n = $(this).attr("id").split("category-")[1];
         var k = $("#user_token").val();
-        $.post(base_url + "/community/" + n + "/follow", {
-            token: k
+        $.post(base_url + "/community/" + n + "/subscribe", {
+            _token: k
         }, function (o) {
             if (o.success) {
                 l.find(".category_follow_btn").addClass("hidden");
@@ -292,8 +292,8 @@ $(document).ready(function () {
         var l = $(this).parent();
         var n = $(this).attr("id").split("category-")[1];
         var k = $("#user_token").val();
-        $.post(base_url + "/community/" + n + "/unfollow", {
-            token: k
+        $.post(base_url + "/community/" + n + "/unsubscribe", {
+            _token: k
         }, function (o) {
             if (o.success) {
                 l.find(".category_unfollow_btn").addClass("hidden");

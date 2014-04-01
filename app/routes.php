@@ -33,6 +33,8 @@ Route::group(array('before' => 'auth'), function(){
         Route::post('post/submit',['as'=>'post-submit','uses'=>'PostController@postSubmit']);
         Route::post('/user/{username}/settings',['as'=>'user-settings','uses'=>'UserController@postUserSettings']);
         
+        Route::post('community/{id}/subscribe',['as'=>'community-subscribe','uses'=>'CommunityController@postSubscribe']);
+        Route::post('community/{id}/unsubscribe',['as'=>'community-unsubscribe','uses'=>'CommunityController@postUnsubscribe']);
     });
     
     Route::get('post/submit',['as'=>'post-submit','uses'=>'PostController@getSubmit']);
