@@ -224,8 +224,8 @@ $(document).ready(function () {
             p.find("textarea[name=comment_content]").val(q.comment_content);
             p.find("textarea[name=comment_content]").focus()
         }*/
-        alert(k.text());
-        p.find("textarea[name=comment_content]").val(k.text());
+        //alert(k.text());
+        p.find("textarea[name=comment_content]").val($.trim(k.text()));
         p.find("textarea[name=comment_content]").focus()
         p.find(".comment_edit_btn:first").addClass("hidden");
         p.find(".comment_unedit_btn:first").removeClass("hidden")
