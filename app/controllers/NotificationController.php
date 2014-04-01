@@ -14,13 +14,15 @@ class NotificationController extends BaseController
         if($user)
         {
             $notifications = $this->notifications->findByUser($user, $perPage);
+            
+            $view =  View::make('notifications.browse')
+                    ->with(compact('notifications'));
             $notifications->each(function($notification)
             {
                 
                 $this->notifications->updateRead($notification,1);
             });
-            return View::make('notifications.browse')
-                    ->with(compact('notifications'));
+            return $view;
         }else
         {
             return Response::route('default');

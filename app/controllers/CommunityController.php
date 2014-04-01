@@ -50,21 +50,29 @@ class CommunityController extends BaseController
     
     public function getBrowse()
     {
-        $lists = $this->communities->findAll();
-        
-        return View::make('communities.index');
+        if(Auth::check())
+        {
+            $communities = $this->communities->findByUserPaginated(Auth::user(),$perPage = 10);
+        }else
+        {
+            $communities = $this->communities->findMostActivePaginated($perPage = 10);
+        }
+        return View::make('communities.index')
+                ->with(compact('communities'));
     }
     
     public function getMostActive()
     {
-        $lists = $this->communities->findAll();
-        return View::make('communities.index');
+        $communities = $this->communities->findMostActivePaginated($perPage = 10);
+        return View::make('communities.index')
+                ->with(compact('communities'));
     }
     
     public function getMostRecent()
     {
-        $lists = $this->communities->findAll();
-        return View::make('communities.index');
+        $communities = $this->communities->findMostRecentPaginated($perPage = 10);
+        return View::make('communities.index')
+                ->with(compact('communities'));
     }
 }
 

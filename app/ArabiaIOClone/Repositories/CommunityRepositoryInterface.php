@@ -16,6 +16,10 @@ interface CommunityRepositoryInterface
     public function findMostRecent($take=8);
     
     public function findBySlug($slug);
+    
+    public function findByUserPaginated($user, $perPage);
+    public function findMostRecentPaginated($perPage);
+    public function findMostActivePaginated($perPage);
 }
 
 ?>

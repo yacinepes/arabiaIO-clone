@@ -8,8 +8,9 @@
 
 namespace ArabiaIOClone\Presenters;
 
+use ArabiaIOClone\Helpers\ArabicDateDiffForHumans;
+use Community;
 use McCool\LaravelAutoPresenter\BasePresenter;
-use \Community;
 
 class CommunityPresenter extends BasePresenter
 {
@@ -26,6 +27,31 @@ class CommunityPresenter extends BasePresenter
     public function getRouteToCommunity()
     {
         return route('community-view',array('communitySlug'=>$this->resource->slug));
+    }
+    
+    public function getSubscribersCount()
+    {
+        return $this->resource->subscribers()->count();
+    }
+    
+    public function getPostsCount()
+    {
+        return $this->resource->posts()->count();
+    }
+    
+    public function getLastActivityDiffForHumans()
+    {
+        
+        $mostRecentPost = $this->resource->posts()->first();
+        
+        if ($mostRecentPost)
+        {
+            return ArabicDateDiffForHumans::translateFromEnglish($mostRecentPost->updated_at->diffForHumans());
+        }else
+        {
+            return ArabicDateDiffForHumans::translateFromEnglish($this->resource->updated_at->diffForHumans());
+        }
+        
     }
     
    

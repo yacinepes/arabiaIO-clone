@@ -270,6 +270,38 @@ $(document).ready(function () {
         $("#login_form_wrapper").removeClass("hidden")
     });
     
+    
+    $(".category_follow_btn").live("click", function (m) {
+        m.preventDefault();
+        var base_url = $("#base_url").val();
+        var l = $(this).parent();
+        var n = $(this).attr("id").split("category-")[1];
+        var k = $("#user_token").val();
+        $.post(base_url + "/community/" + n + "/follow", {
+            token: k
+        }, function (o) {
+            if (o.success) {
+                l.find(".category_follow_btn").addClass("hidden");
+                l.find(".category_unfollow_btn").removeClass("hidden")
+            }
+        }, "json")
+    });
+    $(".category_unfollow_btn").live("click", function (m) {
+        m.preventDefault();
+        var base_url = $("#base_url").val();
+        var l = $(this).parent();
+        var n = $(this).attr("id").split("category-")[1];
+        var k = $("#user_token").val();
+        $.post(base_url + "/community/" + n + "/unfollow", {
+            token: k
+        }, function (o) {
+            if (o.success) {
+                l.find(".category_unfollow_btn").addClass("hidden");
+                l.find(".category_follow_btn").removeClass("hidden")
+            }
+        }, "json")
+    });
+    
     /*jQuery.fn.show_dialog = function () {
         $("#shadow_box").css("display", "inline");
         this.css("display", "inline");
@@ -770,34 +802,7 @@ $(document).ready(function () {
             }
         }, "json")
     });
-    $(".category_follow_btn").live("click", function (m) {
-        m.preventDefault();
-        var l = $(this).parent();
-        var n = $(this).attr("id").split("category-")[1];
-        var k = $("#user_token").val();
-        $.post("/" + n + "/follow", {
-            token: k
-        }, function (o) {
-            if (o.success) {
-                l.find(".category_follow_btn").addClass("hidden");
-                l.find(".category_unfollow_btn").removeClass("hidden")
-            }
-        }, "json")
-    });
-    $(".category_unfollow_btn").live("click", function (m) {
-        m.preventDefault();
-        var l = $(this).parent();
-        var n = $(this).attr("id").split("category-")[1];
-        var k = $("#user_token").val();
-        $.post("/" + n + "/unfollow", {
-            token: k
-        }, function (o) {
-            if (o.success) {
-                l.find(".category_unfollow_btn").addClass("hidden");
-                l.find(".category_follow_btn").removeClass("hidden")
-            }
-        }, "json")
-    });
+    
     $(".category_follow_interest_btn").live("click", function (o) {
         o.preventDefault();
         var n = $(this).parent();

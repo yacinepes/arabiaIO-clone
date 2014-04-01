@@ -30,7 +30,7 @@
                 @endif
            	<a id="search_btn" href="#" title="بحث" >
            		<i class="fa fa-search"></i></a> 
-       		<a id="categories_btn" href="#" title="المجتمعات" >
+       		<a id="categories_btn" href="{{route('communities-browse')}}" title="المجتمعات" >
        			<i class="fa fa-users"></i>
        		</a> 
                 @if(Auth::check())
