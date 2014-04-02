@@ -6,6 +6,7 @@ use ArabiaIOClone\Repositories\PostRepositoryInterface;
 use ArabiaIOClone\Repositories\UserRepositoryInterface;
 use ArabiaIOClone\Repositories\VoteRepositoryInterface;
 use ArabiaIOClone\Repositories\NotificationRepositoryInterface;
+use Illuminate\Config\Repository;
 
 class BaseController extends Controller {
 
@@ -15,6 +16,7 @@ class BaseController extends Controller {
     protected $users;
     protected $votes;
     protected $notifications;
+    protected $config;
     
     public function __construct(
             CommunityRepositoryInterface $communities,
@@ -22,7 +24,8 @@ class BaseController extends Controller {
             PostRepositoryInterface $posts,
             UserRepositoryInterface $users,
             VoteRepositoryInterface $votes,
-            NotificationRepositoryInterface $notifications
+            NotificationRepositoryInterface $notifications,
+            Repository $config
                                 ) 
     {
         $this->communities = $communities;
@@ -31,6 +34,7 @@ class BaseController extends Controller {
         $this->users = $users;
         $this->votes = $votes;
         $this->notifications = $notifications;
+        $this->config = $config;
         $this->__init();
         
                 
@@ -41,12 +45,13 @@ class BaseController extends Controller {
     {
         $navLinks = $this->communities->findMostRecent();
         $notificationsCount = 0;
+        $config = $this->config;
         if (Auth::check())
         {
             $notificationsCount = $this->notifications->findUnreadNotificationsCount(Auth::user());
         }
         
-        View::share(compact('navLinks','notificationsCount'));
+        View::share(compact('navLinks','notificationsCount','config'));
     }
 
 

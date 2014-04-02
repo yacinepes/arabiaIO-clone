@@ -19,6 +19,8 @@ interface CommentRepositoryInterface
     public function updateVoteSum($comment);
     
     public function findByUser($user,$perPage);
+    
+    public function findLatestComments($take = 10);
 }
 
 ?>

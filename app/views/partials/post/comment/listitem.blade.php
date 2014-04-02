@@ -14,7 +14,7 @@
 <!--		<a href="{{route('user-index',array('username'=>$post->user()->username))}}"><img class="comment_user_image" src="https://secure.gravatar.com/avatar/b5dfe5d85f1215cc65655d23332f996a?s=26&amp;d=mm" height="26" align="right" width="26"></a>-->
 		<div class="comment_meta">
 			<span class="comment_user">
-                            <a href="{{route('user-index',array('username'=>$post->user()->username))}}">{{$comment->user()->username}}</a>
+                            <a href="{{route('user-index',array('username'=>$comment->user()->username))}}">{{$comment->user()->username}}</a>
                         </span>
                     <span class="comment_date">{{$comment->getCreationDateDiffForHumans()}}</span>
                     @if(Auth::check())

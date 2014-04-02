@@ -27,8 +27,10 @@ class PostController extends BaseController
             $posts = $this->posts->findTop();
         }
         
+        $latestComments = $this->comments->findLatestComments();
+        
         return View::make('posts.browse')
-                ->with(compact('posts'))
+                 ->with(compact('posts','latestComments'))
                 ->render();
     }
     
@@ -42,8 +44,10 @@ class PostController extends BaseController
         {
             $posts = $this->posts->findMostRecent();
         }
+        $latestComments = $this->comments->findLatestComments();
+        
         return View::make('posts.browse')
-                ->with(compact('posts'))
+                 ->with(compact('posts','latestComments'))
                 ->render();
     }
     
@@ -56,8 +60,10 @@ class PostController extends BaseController
             $posts = $this->posts->findMostPopular();
         }
         
+        $latestComments = $this->comments->findLatestComments();
+        
         return View::make('posts.browse')
-                ->with(compact('posts'))
+                ->with(compact('posts','latestComments'))
                 
                 ->render();
     }

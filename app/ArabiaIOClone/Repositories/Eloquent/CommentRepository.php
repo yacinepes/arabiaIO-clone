@@ -25,6 +25,15 @@ class CommentRepository extends AbstractRepository implements CommentRepositoryI
         
     }
     
+    public function findLatestComments($take = 10)
+    {
+        return $this->model->orderBy('created_at','desc')
+                ->with('users')
+                ->take($take)
+                ->get();
+        
+    }
+    
     public function findById($commentId)
     {
         return Comment::findOrFail($commentId);

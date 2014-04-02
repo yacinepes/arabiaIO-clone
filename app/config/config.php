@@ -2,6 +2,11 @@
 
 return array(
     
+    'global' => [
+        'application_title' => 'Arabia IO Clone',
+        'application_description' => 'يمكنك هنا طرح ومناقشة الأفكار والقضايا التقنية والعلمية والمشاركة في العديد من المجتمعات المختلفة.</a>'
+    ],
+    
     'user' => array(
             
         'enoughKarmaToVoteDown' => 10,

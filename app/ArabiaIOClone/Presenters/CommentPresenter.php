@@ -3,9 +3,10 @@
 namespace ArabiaIOClone\Presenters;
 
 use ArabiaIOClone\Helpers\ArabicDateDiffForHumans;
+use Auth;
 use Comment;
+use Illuminate\Support\Str;
 use McCool\LaravelAutoPresenter\BasePresenter;
-use \Auth;
 /**
  * Description of CommentPresenter
  *
@@ -24,7 +25,10 @@ class CommentPresenter extends BasePresenter
         
     }
     
-    
+    public function getShortContent()
+    {
+        return Str::limit($this->resource->content,75);
+    }
     
     public function subcomment()
     {
@@ -68,6 +72,13 @@ class CommentPresenter extends BasePresenter
             'postId'=>$this->resource->post_id,
             'postSlug' => $this->resource->post()->slug
                 
+                ]);
+    }
+    
+    public function getRouteToUser()
+    {
+        return route('user-index',[
+            'username'=>$this->resource->user()->username
                 ]);
     }
     
