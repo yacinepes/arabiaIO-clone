@@ -22,7 +22,8 @@ interface CommunityRepositoryInterface
     public function findMostRecentPaginated($perPage);
     public function findMostActivePaginated($perPage);
     
-    
+    public function getCommunityCreateForm();
+    public function create(array $data);
 }
 
 ?>

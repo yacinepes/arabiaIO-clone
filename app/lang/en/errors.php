@@ -18,6 +18,8 @@ return array(
     'account_email_notfound' => 'The email cannot be foudn in our database',
     'account_recover_password' => 'Could not recover your password, please try again later',
     'user_update_settings' => 'Could not update your settings, please try again later',
+    'forbidden_community_name'=>'The selected community short name is reserved, please try a different username.',
+    'community_create'=>'Error while creating community, please try again later!'
     
 );
 

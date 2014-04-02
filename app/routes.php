@@ -35,6 +35,7 @@ Route::group(array('before' => 'auth'), function(){
         
         Route::post('community/{id}/subscribe',['as'=>'community-subscribe','uses'=>'CommunityController@postSubscribe']);
         Route::post('community/{id}/unsubscribe',['as'=>'community-unsubscribe','uses'=>'CommunityController@postUnsubscribe']);
+        Route::post('communities/create',['as'=>'communities-create','uses'=>'CommunityController@postCreate']);
     });
     
     Route::get('post/submit',['as'=>'post-submit','uses'=>'PostController@getSubmit']);
@@ -44,6 +45,8 @@ Route::group(array('before' => 'auth'), function(){
     Route::get('user/{username}/settings',['as'=>'user-settings','uses'=>'UserController@getUserSettings']);
     
     Route::get('notifications',['as'=>'notifications-browse','uses'=>'NotificationController@getBrowse']);
+    
+    Route::get('communities/create',['as'=>'communities-create','uses'=>'CommunityController@getCreate']);
 });
 
 Route::group(array('before' => 'guest'), function(){

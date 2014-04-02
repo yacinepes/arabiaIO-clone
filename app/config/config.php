@@ -9,6 +9,12 @@ return array(
         'enoughKarmaToComment' => 0,
         'enoughKarmaToCreateCommunity' => 0
         
+    ),
+    
+    'forbidden_community_names' => array(
+            
+        'meta'
+        
     )
     
     

@@ -302,6 +302,39 @@ $(document).ready(function () {
         }, "json")
     });
     
+    $('#community_form input[name="community_slug"]').change(function (k) {
+        if ($(this).val().length < 3) {
+            alert("لا يمكن أن يكون الاسم القصير للمجتمع مؤلفاً من أقل من 3 أحرف.");
+            $(this).val("");
+            $("#community_form .community_slug_example").text("example")
+        } else {
+            if (!(/^[A-Za-z0-9][A-Za-z0-9_]*[A-Za-z0-9]$/.test($(this).val()))) {
+                alert("فقط الأحرف الانجليزية A-Z مع أرقام 0-9 و _ بالوسط مسموحة.");
+                $(this).val("");
+                $("#community_form .community_slug_example").text("example")
+            } else {
+                $("#community_form .community_slug_example").text($(this).val())
+            }
+        }
+    });
+
+    function j(l) {
+        l = typeof l !== "undefined" ? l : 200;
+        var k = l - $("#community_form textarea[name='community_description']").val().length;
+        $("#community_form #community_description_chars").text(k);
+        if (k < 0) {
+            $("#community_form #community_description_chars").addClass("red")
+        } else {
+            $("#community_form #community_description_chars").removeClass("red")
+        }
+    }
+    $("#community_form textarea[name='community_description']").keyup(function () {
+        j()
+    });
+    if ($("#community_form textarea[name='community_description']").length) {
+        j()
+    }
+    
     /*jQuery.fn.show_dialog = function () {
         $("#shadow_box").css("display", "inline");
         this.css("display", "inline");
@@ -1310,47 +1343,6 @@ $(document).ready(function () {
             $("#community_logo_preview").attr("src", $("#community_logo").val())
         }
     }
-    $('#community_form input[name="community_slug"]').change(function (k) {
-        if ($(this).val().length < 3) {
-            show_alert({
-                title: "خطأ",
-                body: "لا يمكن أن يكون الاسم القصير للمجتمع مؤلفاً من أقل من 3 أحرف.",
-                button_text: "إغلاق",
-                action: "close"
-            });
-            $(this).val("");
-            $("#community_form .community_slug_example").text("example")
-        } else {
-            if (!(/^[A-Za-z0-9][A-Za-z0-9_]*[A-Za-z0-9]$/.test($(this).val()))) {
-                show_alert({
-                    title: "خطأ",
-                    body: "فقط الأحرف الانجليزية A-Z مع أرقام 0-9 و _ بالوسط مسموحة.",
-                    button_text: "إغلاق",
-                    action: "close"
-                });
-                $(this).val("");
-                $("#community_form .community_slug_example").text("example")
-            } else {
-                $("#community_form .community_slug_example").text($(this).val())
-            }
-        }
-    });
-
-    function j(l) {
-        l = typeof l !== "undefined" ? l : 200;
-        var k = l - $("#community_form textarea[name='community_description']").val().length;
-        $("#community_form #community_description_chars").text(k);
-        if (k < 0) {
-            $("#community_form #community_description_chars").addClass("red")
-        } else {
-            $("#community_form #community_description_chars").removeClass("red")
-        }
-    }
-    $("#community_form textarea[name='community_description']").keyup(function () {
-        j()
-    });
-    if ($("#community_form textarea[name='community_description']").length) {
-        j()
-    }
+    
     */
 });

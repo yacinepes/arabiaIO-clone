@@ -10,6 +10,6 @@ return array(
     
     'account_activated' => 'Your account was succefully activated.',
     'account_recover_password' => 'Your password was recovered. you can login with our new password',
-    
+    'community_create'=>'community created with success',
     
 );

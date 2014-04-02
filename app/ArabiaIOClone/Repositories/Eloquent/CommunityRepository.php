@@ -53,11 +53,16 @@ class CommunityRepository extends AbstractRepository implements CommunityReposit
     
     public function findByUserPaginated($user, $perPage)
     {
-        
+        return $this->model->with('subscribers')
+                ->with('posts')
+                ->whereHas('subscribers',function  ($subscriber) use ($user){$subscriber->where('id','=',$user->id);})
+                ->paginate($perPage);
     }
+    
     public function findMostRecentPaginated($perPage)
     {
         return $this->model->with('subscribers')
+                
                 ->with('posts')
                 ->orderBy('created_at', 'desc')
                 ->paginate($perPage);
@@ -74,6 +79,22 @@ class CommunityRepository extends AbstractRepository implements CommunityReposit
         
         $paginator = Paginator::make($items->all(), count($items),$perPage);
         return $paginator;
+    }
+    
+    public function create(array $data)
+    {
+        return Community::create([
+            'name'=>$data['community_title'],
+            'slug'=>$data['community_slug'],
+            'description'=>$data['community_description'],
+            'creator_id'=>$data['creator_id'],
+            'createdbyuser'=>$data['createdbyuser']
+        ]);
+    }
+    
+    public function getCommunityCreateForm() 
+    {
+        return  app('ArabiaIOClone\Services\Forms\CommunityCreateForm');
     }
 }
 
