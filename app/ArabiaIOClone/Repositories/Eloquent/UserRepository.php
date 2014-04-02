@@ -25,12 +25,20 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     
     public function subscribeToCommunity($user,$community)
     {
-        return $user->communities()->attach($community->id);
+        if(!$user->communities->contains($community->id))
+        {
+            $user->communities()->attach($community->id);
+        }
+        
     }
     
     public function unsubscribeToCommunity($user, $community)
     {
-        return $user->communities()->detach($community->id);
+        if($user->communities->contains($community->id))
+        {
+           $user->communities()->detach($community->id); 
+        }
+         
     }
     
     public function updateReputation($user)
