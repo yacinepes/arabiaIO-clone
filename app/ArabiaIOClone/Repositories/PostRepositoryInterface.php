@@ -33,6 +33,11 @@ interface  PostRepositoryInterface
     public function findTopByCommunity($community, $perPage );
     public function findMostRecentByCommunity($community, $perPage );
     public function findMostPopularByCommunity($perPage);
+    
+    //by subscriptions
+    public function findTopByUserSubscriptions($user, $perPage );
+    public function findMostRecentByUserSubscriptions($user, $perPage );
+    public function findMostPopularByUserSubscriptions($usern,$perPage); 
 }
 
 ?>

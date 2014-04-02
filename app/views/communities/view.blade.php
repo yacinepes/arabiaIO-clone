@@ -5,7 +5,7 @@
     
 	<div id="content_nav">
            
-            <h2 id="nav_title"><a href="/content" title="التدوين وصناعة المحتوى">التدوين وصناعة المحتوى</a></h2>
+            <h2 id="nav_title"><a href="#" title="{{$community->name}}">{{$community->name}}</a></h2>
             
 		<ul>
 			<li class="{{Request::segment('3') == 'popular' || Request::segment('3') == null ? 'active': false}}"><a href="{{route('community-view',['communitySlug'=>$community->slug])}}">الأكثر شيوعاً</a></li>

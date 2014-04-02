@@ -20,7 +20,13 @@ class PostController extends BaseController
     
     public function getTop()
     {
-        $posts = $this->posts->findTop();
+        if(Auth::check())
+        {
+            $posts = $this->posts->findTopByUserSubscriptions(Auth::user());
+        }else{
+            $posts = $this->posts->findTop();
+        }
+        
         return View::make('posts.browse')
                 ->with(compact('posts'))
                 ->render();
@@ -28,7 +34,14 @@ class PostController extends BaseController
     
     public function getMostRecent()
     {
-        $posts = $this->posts->findMostRecent();
+        if(Auth::check())
+        {
+            $posts = $this->posts->findMostRecentByUserSubscriptions(Auth::user());
+        }  
+        else
+        {
+            $posts = $this->posts->findMostRecent();
+        }
         return View::make('posts.browse')
                 ->with(compact('posts'))
                 ->render();
@@ -36,7 +49,13 @@ class PostController extends BaseController
     
     public  function getMostPopular()
     {
-        $posts = $this->posts->findMostPopular();
+        if(Auth::check())
+        {
+            $posts = $this->posts->findMostPopularByUserSubscriptions(Auth::user());
+        }  else{
+            $posts = $this->posts->findMostPopular();
+        }
+        
         return View::make('posts.browse')
                 ->with(compact('posts'))
                 

@@ -98,7 +98,8 @@ class CommunityController extends BaseController
         $data['creator_id'] = $user->id ;
         if($community = $this->communities->create($data))
         {
-            $community->subscribers()->attach($user);
+            $this->users->subscribeToCommunity($user,$community);
+            
             return Redirect::route('communities-browse-recent')
                     ->with('success',[Lang::get('success.community_create')]);
         }else

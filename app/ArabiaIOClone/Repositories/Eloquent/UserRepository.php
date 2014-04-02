@@ -41,6 +41,23 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
          
     }
     
+    public function subscribeAllToCommunity($community)
+    {
+        $users =  User::all();
+        foreach($users as $user)
+        {
+            $user->communities()->attach($community);
+        }
+    }
+    public function unsubscribeAllToCommunity($community)
+    {
+        $users =  User::all();
+        foreach($users as $user)
+        {
+            $user->communities()->detach($community);
+        }
+    }
+    
     public function updateReputation($user)
     {
         //$user = $this->model->find($userId);
@@ -153,6 +170,11 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         $user->code = $code;
         $user->password_temp = Hash::make($generatedPassword);
         return $user->save();
+    }
+    
+    public function findAll()
+    {
+        return User::all();
     }
     
     public function create(array $data)

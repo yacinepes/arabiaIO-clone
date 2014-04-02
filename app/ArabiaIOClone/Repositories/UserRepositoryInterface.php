@@ -27,7 +27,7 @@ interface UserRepositoryInterface
     public function findByActivationCode($code);
     public function findByActivationCodeAndTempPassword($code);
     
-
+    public function findAll();
 
 //    
 //    public function findByEmail($email);
@@ -36,6 +36,9 @@ interface UserRepositoryInterface
     public function setActivated($user);
     public function setRecoverPasswordRequestState($user);
     public function setRecoverPasswordCompleteState($user);
+    
+    public function subscribeAllToCommunity($community);
+    public function unsubscribeAllToCommunity($community);
     
     public function subscribeToCommunity($user,$community);
     public function unsubscribeToCommunity($user,$community);
