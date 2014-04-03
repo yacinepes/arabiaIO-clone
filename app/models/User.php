@@ -32,7 +32,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
                             'code',
                             'reputation',
                             'bio',
-                            'active');
+                            'active',
+                            'is_admin');
         
         
         

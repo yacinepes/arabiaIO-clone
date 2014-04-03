@@ -21,6 +21,7 @@ interface CommentRepositoryInterface
     public function findByUser($user,$perPage);
     
     public function findLatestComments($take = 10);
+    public function findLatestCommentsByCommunity($community, $take = 10);
 }
 
 ?>

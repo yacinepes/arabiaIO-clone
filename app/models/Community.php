@@ -11,7 +11,7 @@ class Community extends Eloquent
     
     public $presenter = 'ArabiaIOClone\Presenters\CommunityPresenter';
     
-    protected $fillable = array('name', 'slug','description','creator_id');
+    protected $fillable = array('name', 'slug','description','creator_id','createdbyuser');
     
     
     public function creator()

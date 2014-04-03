@@ -34,7 +34,7 @@
                                 <span class="inblock full_name">({{$post->user()->fullname}})</span>
                                 @endif
                             </a></li>
-			<li><span class="block"><i class="icon-reorder"></i><a href="MISSING COMMUNITY ROUTE">{{$post->community()->name}}</a></span></li>
+			<li><span class="block"><i class="fa fa-group"></i><a href="{{$post->getRouteToCommunity()}}">{{$post->community()->name}}</a></span></li>
 			<!--<li id="fp-5153"><i class="icon-star"></i><a href="#" class="add_favorite ">أضف الى المفضّلة</a><a href="#" class="remove_favorite hidden">أزل من المفضّلة</a></li>-->
 <!--			<li><i class="icon-ban-circle"></i><a class="post_report_spam" href="#">أبلغ عن مخالفة</a></li>-->
 <!--			<li><a href="/topic/%D9%86%D8%B5%D8%A7%D8%A6%D8%AD" class="topic"><i class="icon-tag"></i> نصائح</a><a href="/topic/%D9%86%D8%B5%D9%8A%D8%AD%D8%A9" class="topic"><i class="icon-tag"></i> نصيحة</a><a href="/topic/%D9%86%D8%B5%D8%A7%D8%A6%D8%AD-%D8%AA%D9%82%D9%86%D9%8A%D8%A9" class="topic"><i class="icon-tag"></i> نصائح-تقنية</a></li>-->

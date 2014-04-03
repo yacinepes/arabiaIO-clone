@@ -335,6 +335,36 @@ $(document).ready(function () {
         j()
     }
     
+    
+    $("#category_follow_btn").live("click", function (l) {
+        l.preventDefault();
+        var m = $("#community_id").val();
+        var base_url = $("#base_url").val();
+        var k = $("#user_token").val();
+        $.post(base_url + "/community/" + m + "/subscribe", {
+            _token: k
+        }, function (n) {
+            if (n.success) {
+                $("#category_follow_btn").addClass("hidden");
+                $("#category_unfollow_btn").removeClass("hidden")
+            }
+        }, "json")
+    });
+    $("#category_unfollow_btn").live("click", function (l) {
+        l.preventDefault();
+        var m = $("#community_id").val();
+        var base_url = $("#base_url").val();
+        var k = $("#user_token").val();
+        $.post(base_url + "/community/" + m + "/unsubscribe", {
+            _token: k
+        }, function (n) {
+            if (n.success) {
+                $("#category_unfollow_btn").addClass("hidden");
+                $("#category_follow_btn").removeClass("hidden")
+            }
+        }, "json")
+    });
+    
     /*jQuery.fn.show_dialog = function () {
         $("#shadow_box").css("display", "inline");
         this.css("display", "inline");
@@ -809,32 +839,7 @@ $(document).ready(function () {
         $("#signup_form_wrapper #signup_form input[name='follow_category']").val(l);
         $("#login_form_wrapper #login_form input[name='follow_category']").val(l)
     });
-    $("#category_follow_btn").live("click", function (l) {
-        l.preventDefault();
-        var m = $("#category_slug").val();
-        var k = $("#user_token").val();
-        $.post("/" + m + "/follow", {
-            token: k
-        }, function (n) {
-            if (n.success) {
-                $("#category_follow_btn").addClass("hidden");
-                $("#category_unfollow_btn").removeClass("hidden")
-            }
-        }, "json")
-    });
-    $("#category_unfollow_btn").live("click", function (l) {
-        l.preventDefault();
-        var m = $("#category_slug").val();
-        var k = $("#user_token").val();
-        $.post("/" + m + "/unfollow", {
-            token: k
-        }, function (n) {
-            if (n.success) {
-                $("#category_unfollow_btn").addClass("hidden");
-                $("#category_follow_btn").removeClass("hidden")
-            }
-        }, "json")
-    });
+    
     
     $(".category_follow_interest_btn").live("click", function (o) {
         o.preventDefault();

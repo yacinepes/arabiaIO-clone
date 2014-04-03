@@ -36,8 +36,9 @@ class CommunityController extends BaseController
        if($community)
        {
            $posts = $this->posts->findMostPopularByCommunity($community);
+           $latestComments = $this->comments->findLatestCommentsByCommunity($community);
            return View::make('communities.view')
-                   ->with(compact('community','posts'));
+                   ->with(compact('community','posts','latestComments'));
        }
    }
    
@@ -94,7 +95,7 @@ class CommunityController extends BaseController
                     ->withErrors($form->getErrors());
         }
         $data = $form->getInputData();
-        $data['createdbyuser'] = $user->is_admin ? false:true;
+        $data['createdbyuser'] = $user->is_admin == true ? false :true ;
         $data['creator_id'] = $user->id ;
         if($community = $this->communities->create($data))
         {
