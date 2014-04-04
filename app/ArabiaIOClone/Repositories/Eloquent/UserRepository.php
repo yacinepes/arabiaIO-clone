@@ -41,20 +41,30 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
          
     }
     
+    
+    
     public function subscribeAllToCommunity($community)
     {
         $users =  User::all();
         foreach($users as $user)
         {
-            $user->communities()->attach($community);
+            if(!$user->communities->contains($community->id))
+            {
+                $user->communities()->attach($community);
+            }
+            
         }
     }
-    public function unsubscribeAllToCommunity($community)
+    public function unsubscribeAllFromCommunity($community)
     {
         $users =  User::all();
         foreach($users as $user)
         {
-            $user->communities()->detach($community);
+            if($user->communities->contains($community->id))
+            {
+                $user->communities()->detach($community);
+            }
+            
         }
     }
     

@@ -24,6 +24,10 @@ interface CommunityRepositoryInterface
     
     public function getCommunityCreateForm();
     public function create(array $data);
+    
+    public function subscribeToAllSuperCommunities($user);
+    public function unsubscribeFromAllSuperCommunities($user);
+
 }
 
 ?>

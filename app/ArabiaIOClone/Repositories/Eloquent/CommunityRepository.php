@@ -22,6 +22,32 @@ class CommunityRepository extends AbstractRepository implements CommunityReposit
         
     }
     
+    public function subscribeToAllSuperCommunities($user)
+    {
+        $superCommunities = $this->model->where('createdbyuser','=',0)->get();
+        foreach($superCommunities as $community)
+        {
+            if(!$community->subscribers->contains($user->id))
+            {
+                $community->subscribers()->attach($user->id);
+            }
+            
+        }
+                
+    }
+    public function unsubscribeFromAllSuperCommunities($user)
+    {
+        $superCommunities = $this->model->where('createdbyuser','=',0)->get();
+        foreach($superCommunities as $community)
+        {
+            if($community->subscribers->contains($user->id))
+            {
+                $community->subscribers()->detach($user->id);
+            }
+            
+        }
+    }
+    
     public function findBySlug($slug) 
     {
         return $this->model
