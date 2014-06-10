@@ -2,7 +2,7 @@
 
 ArabiaIOClone is an open source implementation of the vote based arabic tech community (http://arabia.io)
 
-To see a running demo check out <http://www.scyware.com/arabiaioclone>!
+To see a running demo check out <http://shofhna.com>!
 
 This project is build with the awsome laravel framework [Laravel 4](http://laravel.com/)
 
